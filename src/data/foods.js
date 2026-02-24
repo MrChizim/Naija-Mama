@@ -1,0 +1,500 @@
+export const foods = [
+  {
+    id: 1,
+    name: "Pap (Akamu / Ogi)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Pap is a fantastic pregnancy staple — it's gentle on the stomach, easy to digest, and rich in carbohydrates for energy. Fortified versions contain added iron and vitamins that support your baby's development.",
+    benefit: "Rich in carbohydrates and iron (fortified); helps with morning sickness in the first trimester.",
+    image: "https://source.unsplash.com/featured/?pap,porridge",
+  },
+  {
+    id: 2,
+    name: "Beans (All Types)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Beans — black-eyed peas, honey beans, brown beans — are an excellent plant-based protein source. They're packed with folate, which is critical in early pregnancy to prevent neural tube defects.",
+    benefit: "Excellent source of protein, folate, and iron. Supports baby's brain and spine development.",
+    image: "https://source.unsplash.com/featured/?beans,stew",
+  },
+  {
+    id: 3,
+    name: "Egusi Soup",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Egusi (melon seeds) soup is nutritious and safe throughout pregnancy. The seeds are high in healthy fats, protein, and minerals — and it pairs beautifully with eba, fufu, or rice.",
+    benefit: "High in healthy fats, protein, calcium, and magnesium. Good for bone development.",
+    image: "https://source.unsplash.com/featured/?egusi,soup",
+  },
+  {
+    id: 4,
+    name: "Palm Oil",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Red palm oil is a rich source of Vitamin A (as beta-carotene), which supports your baby's immune system and eye development. Use in normal cooking amounts — it's a Nigerian kitchen essential.",
+    benefit: "Rich in Vitamin A, Vitamin E, and antioxidants. Supports fetal immune and eye development.",
+    image: "https://source.unsplash.com/featured/?palm,oil",
+  },
+  {
+    id: 5,
+    name: "Ugu (Pumpkin Leaves)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Ugu is one of the most iron-rich vegetables you can eat during pregnancy. It's fantastic for building blood, which is especially important as your blood volume increases significantly in pregnancy.",
+    benefit: "High in iron, folate, Vitamin C, and calcium. Helps prevent anaemia in pregnancy.",
+    image: "https://source.unsplash.com/featured/?leafy,greens",
+  },
+  {
+    id: 6,
+    name: "Tiger Nuts (Ofio)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Tiger nuts are an underrated pregnancy superfood. They provide gut-friendly fibre (helpful for pregnancy constipation!), healthy fats, and important minerals like magnesium and potassium.",
+    benefit: "Good fibre, healthy fats, magnesium, and potassium. Helps with constipation.",
+    image: "https://source.unsplash.com/featured/?tigernut",
+  },
+  {
+    id: 7,
+    name: "Ripe Papaya (Pawpaw)",
+    safety: "safe",
+    trimesters: ["second", "third"],
+    explanation: "Ripe papaya is safe and nutritious — rich in folate, Vitamin C, and digestive enzymes. The key word is ripe. Avoid unripe or semi-ripe papaya, which contains a harmful latex substance.",
+    benefit: "Rich in folate, Vitamin C, and digestive enzymes. Supports fetal development.",
+    image: "https://source.unsplash.com/featured/?papaya",
+  },
+  {
+    id: 8,
+    name: "Ogiri / Iru (Locust Bean)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "The fermented locust bean used to season soups and stews is completely safe in pregnancy. It's a good protein source and contains beneficial bacteria that support gut health.",
+    benefit: "High in protein, lipids, and beneficial fermented compounds. Excellent seasoning.",
+    image: "https://source.unsplash.com/featured/?fermented,beans",
+  },
+  {
+    id: 9,
+    name: "Catfish (Point & Kill)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Catfish is a lean, low-mercury fish and an excellent source of protein in pregnancy. Ensure it's properly cooked — well-done peppersoup or grilled catfish is a nutritious pregnancy meal.",
+    benefit: "Excellent lean protein, omega-3 fatty acids, and Vitamin D. Low mercury.",
+    image: "https://source.unsplash.com/featured/?catfish,grilled",
+  },
+  {
+    id: 10,
+    name: "Boiled Plantain",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Boiled plantain is a complex carbohydrate that provides sustained energy and is gentler than fried versions. It's also a good source of Vitamin B6, which can help ease nausea in the first trimester.",
+    benefit: "Complex carbs, Vitamin B6 (helps with nausea), potassium, and Vitamin C.",
+    image: "https://source.unsplash.com/featured/?boiled,plantain",
+  },
+  {
+    id: 11,
+    name: "Bitter Leaf Soup",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "Bitter leaf soup in normal cooking amounts — the kind you'd eat as part of a regular meal — is generally fine. However, consuming very large amounts or concentrated bitter leaf preparations is not recommended.",
+    risk: "In large amounts, bitter leaf may have uterine-stimulating effects. Stick to normal meal portions.",
+    image: "https://source.unsplash.com/featured/?bitter,leaf,soup",
+  },
+  {
+    id: 12,
+    name: "Zobo (Hibiscus Drink)",
+    safety: "moderate",
+    trimesters: ["third"],
+    explanation: "Zobo (hibiscus tea) is best avoided in the first trimester as it may stimulate uterine contractions. Many Nigerian mamas enjoy it in the second and third trimester in moderation — but check with your doctor first.",
+    risk: "Contains phytochemicals that can stimulate contractions. Avoid in first trimester especially.",
+    image: "https://source.unsplash.com/featured/?hibiscus,drink",
+  },
+  {
+    id: 13,
+    name: "Suya",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "A little suya every now and then is fine, but be mindful. The concern is ensuring the meat is fully cooked (no pink parts) and the sodium content. Street suya can also be prepared in less-than-hygienic conditions.",
+    risk: "High sodium content; risk of undercooked meat and foodborne illness. Ensure fully cooked.",
+    image: "https://source.unsplash.com/featured/?suya",
+  },
+  {
+    id: 14,
+    name: "Smoked / Dried Fish",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "Smoked and dried fish (stockfish, panla, asa) are protein-rich and add great flavour to soups. The main concerns are high sodium levels and possible smoke-related compounds — enjoy in moderation as part of soups.",
+    risk: "High sodium content. Consume in moderation and balance with plenty of water.",
+    image: "https://source.unsplash.com/featured/?smoked,fish",
+  },
+  {
+    id: 15,
+    name: "Fried Plantain (Dodo)",
+    safety: "moderate",
+    trimesters: ["first", "second", "third"],
+    explanation: "Dodo is delicious and fine occasionally — the concern is the amount of oil used in frying. High-fat foods can worsen heartburn (very common in pregnancy) and add unnecessary calories. Enjoy as a treat.",
+    risk: "High in fat and calories from frying. Can worsen pregnancy heartburn. Occasional treat only.",
+    image: "https://source.unsplash.com/featured/?fried,plantain",
+  },
+  {
+    id: 16,
+    name: "Agbo / Herbal Drinks",
+    safety: "avoid",
+    trimesters: [],
+    explanation: "This is one of the most important warnings on NaijaMama. Agbo and local herbal preparations have not been tested for safety in pregnancy. Many herbs can cause uterine contractions and pregnancy complications.",
+    risk: "Multiple herbs in agbo preparations are known to stimulate contractions and may cause miscarriage or preterm labour.",
+    image: "https://source.unsplash.com/featured/?herbal,drink",
+  },
+  {
+    id: 17,
+    name: "Unripe Papaya (Pawpaw)",
+    safety: "avoid",
+    trimesters: [],
+    explanation: "Unripe and semi-ripe papaya contains a latex substance and high concentrations of papain enzyme. Both have been shown to stimulate uterine contractions and are associated with miscarriage. Fully ripe papaya is safe.",
+    risk: "Contains papain enzyme and latex which can cause uterine contractions. Avoid completely.",
+    image: "https://source.unsplash.com/featured/?green,papaya",
+  },
+  {
+    id: 18,
+    name: "Utazi Leaf (Large Amounts)",
+    safety: "avoid",
+    trimesters: [],
+    explanation: "Utazi (Gongronema latifolium) used in small amounts as a soup spice is generally considered okay, but consuming it in large amounts — as a tonic or remedy — is not safe in pregnancy due to its uterine-stimulating effects.",
+    risk: "Large amounts can stimulate uterine contractions. Avoid as a health remedy; tiny amounts in soup may be okay.",
+    image: "https://source.unsplash.com/featured/?utazi,leaf",
+  },
+  {
+    id: 19,
+    name: "Kola Nut (Obi Cola)",
+    safety: "avoid",
+    trimesters: [],
+    explanation: "Kola nut contains caffeine and theobromine — both stimulants that cross the placenta. High caffeine intake in pregnancy is associated with low birth weight and other complications. Avoid chewing kola nut during pregnancy.",
+    risk: "High in caffeine and theobromine. Associated with low birth weight and pregnancy complications.",
+    image: "https://source.unsplash.com/featured/?kola,nut",
+  },
+  {
+    id: 20,
+    name: "Ofe Onugbu (Bitter Leaf Soup)",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "Ofe onugbu — the Igbo-style bitter leaf soup — is safe in the amounts you'd normally eat at a meal. The bitterness comes from compounds that, in very large quantities, aren't ideal in pregnancy. Normal portions are fine.",
+    risk: "Large medicinal amounts not recommended. Normal meal-sized portions are generally safe.",
+    image: "https://source.unsplash.com/featured/?bitter,leaf,soup",
+  },
+  {
+    id: 21,
+    name: "Groundnuts (Peanuts)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Groundnuts are a protein and healthy fat powerhouse. They make an excellent pregnancy snack — handful of groundnuts, kulikuli, or groundnut soup. Unless you have a nut allergy, go for it!",
+    benefit: "Rich in protein, healthy fats, folate, and Vitamin E. Great snacking option.",
+    image: "https://source.unsplash.com/featured/?peanuts",
+  },
+  {
+    id: 22,
+    name: "Eba / Garri",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Eba (made from garri/cassava) is a staple carbohydrate that's completely safe in pregnancy. When eaten with nutritious soups like egusi, okra, or vegetable soup, it forms a balanced meal.",
+    benefit: "Good energy source; low fat; pairs well with nutritious soups to create balanced meals.",
+    image: "https://source.unsplash.com/featured/?garri,eba",
+  },
+  {
+    id: 23,
+    name: "Okra Soup",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Okra is one of the best pregnancy vegetables — it's high in folate, Vitamin C, and fibre. The mucilaginous texture actually soothes the digestive tract, which can help with pregnancy discomfort.",
+    benefit: "High in folate, Vitamin C, fibre, and Vitamin K. Supports neural tube development.",
+    image: "https://source.unsplash.com/featured/?okra,soup",
+  },
+  {
+    id: 24,
+    name: "Jollof Rice",
+    safety: "moderate",
+    trimesters: ["first", "second", "third"],
+    explanation: "Jollof is a Nigerian classic and fine in pregnancy. The key is portion size and keeping it balanced with vegetables and protein.",
+    risk: "Can be high in oil and salt depending on preparation. Pair with veggies and lean protein.",
+    image: "https://source.unsplash.com/featured/?jollof,rice",
+  },
+  {
+    id: 25,
+    name: "Moi Moi",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Moi moi (steamed bean pudding) is protein-rich, easy on the stomach, and great for pregnancy nutrition.",
+    benefit: "High in protein and folate. Supports baby’s growth.",
+    image: "https://source.unsplash.com/featured/?moi,moi",
+  },
+  {
+    id: 26,
+    name: "Efo Riro",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Efo riro is packed with leafy greens and nutrients. It’s a great way to get iron and folate.",
+    benefit: "Leafy greens provide iron, folate, and Vitamin C.",
+    image: "https://source.unsplash.com/featured/?nigerian,vegetable,stew",
+  },
+  {
+    id: 27,
+    name: "Banga Soup",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "Banga soup is rich and flavourful. Enjoy in moderation, especially if it’s heavy on oil or salt.",
+    risk: "High oil and sodium depending on preparation. Keep portions balanced.",
+    image: "https://source.unsplash.com/featured/?banga,soup",
+  },
+  {
+    id: 28,
+    name: "Ofada Rice",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Ofada rice is a whole grain option that provides longer-lasting energy and fibre.",
+    benefit: "Whole grain carbs and fibre for steady energy.",
+    image: "https://source.unsplash.com/featured/?ofada,rice",
+  },
+  {
+    id: 29,
+    name: "Yam Porridge (Asaro)",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Yam porridge is filling and comforting, especially in early pregnancy when nausea is common.",
+    benefit: "Complex carbs plus vitamins and fibre depending on additions.",
+    image: "https://source.unsplash.com/featured/?yam,porridge",
+  },
+  {
+    id: 30,
+    name: "Edikang Ikong",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "This vegetable-rich soup is nutrient-dense and excellent for pregnancy.",
+    benefit: "High in vitamins, iron, and fibre from leafy greens.",
+    image: "https://source.unsplash.com/featured/?vegetable,soup",
+  },
+  {
+    id: 31,
+    name: "Kilishi",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "Kilishi is tasty but often salty and heavily spiced. Keep it occasional and ensure it’s well dried.",
+    risk: "High sodium and spice levels; eat occasionally.",
+    image: "https://source.unsplash.com/featured/?jerky,meat",
+  },
+  {
+    id: 32,
+    name: "Nkwobi",
+    safety: "moderate",
+    trimesters: ["second", "third"],
+    explanation: "Nkwobi is rich and delicious but can be heavy on fat and spice.",
+    risk: "High fat and spice can worsen heartburn. Enjoy in moderation.",
+    image: "https://source.unsplash.com/featured/?spicy,stew",
+  },
+  {
+    id: 33,
+    name: "Avocado Pear",
+    safety: "safe",
+    trimesters: ["first", "second", "third"],
+    explanation: "Avocado is a pregnancy superfood loaded with healthy fats and folate.",
+    benefit: "Healthy fats, folate, and potassium. Great for baby’s brain development.",
+    image: "https://source.unsplash.com/featured/?avocado",
+  }
+];
+
+export const herbs = [
+  {
+    id: 1,
+    name: "Agbo Jedi-Jedi",
+    localName: "Agbo jedi-jedi (Yoruba)",
+    dangerLevel: "high",
+    reason: "This preparation contains a mixture of herbs, many of which are known to stimulate the uterus. Multiple cases of pregnancy complications have been linked to agbo preparations. Completely avoid in pregnancy."
+  },
+  {
+    id: 2,
+    name: "Ororo / Wild Lettuce",
+    localName: "Ororo (Yoruba) / Efo Igbo (Yoruba)",
+    dangerLevel: "moderate",
+    reason: "While wild lettuce used as a vegetable in soup may be fine in small amounts, medicinal preparations using concentrated ororo are not safe. It contains lactucarium which can affect the nervous system."
+  },
+  {
+    id: 3,
+    name: "Utazi Tea / Tonic",
+    localName: "Utazi (Igbo) / Arokeke (Yoruba)",
+    dangerLevel: "high",
+    reason: "Medicinal use of utazi in large amounts has been associated with uterine contractions. As a small amount of spice in cooking it may be okay, but as a tea or tonic — avoid completely."
+  },
+  {
+    id: 4,
+    name: "Local Herbal Teas (Mixed)",
+    localName: "Various (sold in markets)",
+    dangerLevel: "high",
+    reason: "Pre-mixed herbal teas sold in markets and roadside are particularly risky because you don't know exactly what's in them. Many contain herbs that are contraindicated in pregnancy. Just say no."
+  },
+  {
+    id: 5,
+    name: "Zobo (Concentrated)",
+    localName: "Zobo / Zoborodo / Wonjo",
+    dangerLevel: "moderate",
+    reason: "Hibiscus in concentrated form (not diluted drinks) has been shown in studies to stimulate uterine contractions. Occasional diluted zobo drink in second/third trimester is probably fine, but medicinal amounts should be avoided."
+  },
+  {
+    id: 6,
+    name: "Bitter Kola (Orogbo)",
+    localName: "Orogbo (Yoruba) / Akiilu (Igbo)",
+    dangerLevel: "moderate",
+    reason: "Bitter kola contains caffeine and other compounds. While commonly used traditionally for nausea, it hasn't been studied for safety in pregnancy. Approach with caution and discuss with your doctor."
+  }
+];
+
+export const mealPlans = {
+  first: [
+    {
+      day: "Day 1",
+      breakfast: "Pap (ogi) with evaporated milk + 2 boiled eggs",
+      lunch: "Ewa riro (beans stew) with boiled plantain (dodo)",
+      dinner: "Light vegetable soup (egusi + ugu) with small portion of eba",
+      snack: "Handful of tiger nuts or groundnuts"
+    },
+    {
+      day: "Day 2",
+      breakfast: "Akara (bean cakes) with pap or kunu",
+      lunch: "Jollof rice with grilled catfish and steamed vegetables",
+      dinner: "Okra soup with semolina",
+      snack: "Ripe banana + groundnuts"
+    },
+    {
+      day: "Day 3",
+      breakfast: "Oats with warm milk + boiled egg",
+      lunch: "Ofada rice with ofada stew (vegetable-rich)",
+      dinner: "Pepper soup (catfish/chicken) with yam",
+      snack: "Pawpaw (fully ripe) slices"
+    },
+    {
+      day: "Day 4",
+      breakfast: "Pap with ogi + boiled egg whites",
+      lunch: "Moi moi (2 pieces) with ogi",
+      dinner: "Egusi soup with eba",
+      snack: "Tiger nuts and water"
+    },
+    {
+      day: "Day 5",
+      breakfast: "Boiled yam with egg stew",
+      lunch: "White rice with vegetable soup (ugu leaves)",
+      dinner: "Beans porridge with fried plantain (small)",
+      snack: "Groundnuts and water"
+    },
+    {
+      day: "Day 6",
+      breakfast: "Pap + akara",
+      lunch: "Ofe onugbu (bitter leaf soup) with garri — small portion",
+      dinner: "Grilled tilapia with boiled yam and salad",
+      snack: "Ripe pawpaw or banana"
+    },
+    {
+      day: "Day 7",
+      breakfast: "Boiled eggs + agege bread (no too much)",
+      lunch: "Fried rice (light) with chicken and coleslaw",
+      dinner: "Palm oil soup with moringa leaves and fufu",
+      snack: "Tiger nuts"
+    }
+  ],
+  second: [
+    {
+      day: "Day 1",
+      breakfast: "Oats with banana and warm milk",
+      lunch: "Beans and plantain with palm oil stew",
+      dinner: "Banga soup with starch or eba",
+      snack: "Boiled groundnuts"
+    },
+    {
+      day: "Day 2",
+      breakfast: "Pap with milk + 2 boiled eggs",
+      lunch: "Jollof rice with catfish and vegetables",
+      dinner: "Egusi and ugu soup with pounded yam",
+      snack: "Ripe papaya slices"
+    },
+    {
+      day: "Day 3",
+      breakfast: "Ogi with akara (3 pieces)",
+      lunch: "White rice with tomato-based beef stew + ugu salad",
+      dinner: "Okra soup with semolina",
+      snack: "Tiger nuts + water"
+    },
+    {
+      day: "Day 4",
+      breakfast: "Boiled yam with scrambled eggs",
+      lunch: "Ofada rice + ofada stew (vegetable-rich)",
+      dinner: "Catfish pepper soup with yam",
+      snack: "Groundnuts and banana"
+    },
+    {
+      day: "Day 5",
+      breakfast: "Pap + moi moi",
+      lunch: "Beans porridge (ewa riro) with fish",
+      dinner: "Palm oil soup with moringa + fufu",
+      snack: "Boiled plantain + groundnuts"
+    },
+    {
+      day: "Day 6",
+      breakfast: "Whole grain bread + boiled eggs + avocado",
+      lunch: "Efo riro with stockfish and rice",
+      dinner: "Light ofe onugbu with small eba",
+      snack: "Ripe pawpaw"
+    },
+    {
+      day: "Day 7",
+      breakfast: "Oats + milk + boiled egg",
+      lunch: "Fried rice with grilled chicken and salad",
+      dinner: "Egusi soup with pounded yam",
+      snack: "Tiger nuts"
+    }
+  ],
+  third: [
+    {
+      day: "Day 1",
+      breakfast: "Pap with milk + boiled eggs (iron-rich start)",
+      lunch: "Beans stew with boiled plantain",
+      dinner: "Egusi and ugu soup with pounded yam",
+      snack: "Tiger nuts + groundnuts"
+    },
+    {
+      day: "Day 2",
+      breakfast: "Oats with warm milk and honey",
+      lunch: "Jollof rice with catfish and coleslaw",
+      dinner: "Okra soup + eba",
+      snack: "Ripe banana + groundnuts"
+    },
+    {
+      day: "Day 3",
+      breakfast: "Boiled yam + egg sauce with tomatoes and ugu",
+      lunch: "White rice + banga stew with assorted fish",
+      dinner: "Vegetable soup (light) with semolina",
+      snack: "Ripe papaya"
+    },
+    {
+      day: "Day 4",
+      breakfast: "Ogi + akara (protein-rich breakfast)",
+      lunch: "Moi moi + ogi or rice",
+      dinner: "Catfish pepper soup with boiled yam",
+      snack: "Dates (great for third trimester!) + groundnuts"
+    },
+    {
+      day: "Day 5",
+      breakfast: "Whole grain bread + eggs + avocado",
+      lunch: "Ofada rice with vegetable-rich ofada stew",
+      dinner: "Efo riro with semolina",
+      snack: "Tiger nuts"
+    },
+    {
+      day: "Day 6",
+      breakfast: "Pap + boiled eggs",
+      lunch: "Beans and yam porridge",
+      dinner: "Light egusi soup with fufu",
+      snack: "Ripe banana + water"
+    },
+    {
+      day: "Day 7",
+      breakfast: "Oats + warm milk",
+      lunch: "Jollof rice + grilled chicken + salad",
+      dinner: "Palm oil based vegetable soup with eba",
+      snack: "Dates + tiger nuts"
+    }
+  ]
+};
