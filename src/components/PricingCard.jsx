@@ -7,17 +7,17 @@ export default function PricingCard({ plan }) {
     <div style={{
       background: 'var(--color-white)',
       borderRadius: 20,
-      boxShadow: highlighted ? '0 8px 40px rgba(194,24,91,0.2)' : 'var(--shadow-card)',
+      boxShadow: highlighted ? '0 8px 40px rgba(62,20,68,0.18)' : 'var(--shadow-card)',
       padding: '32px 28px',
-      border: highlighted ? '2px solid var(--color-primary)' : '1.5px solid rgba(194,24,91,0.08)',
+      border: highlighted ? '2px solid var(--color-primary)' : '1.5px solid rgba(62,20,68,0.12)',
       transform: highlighted ? 'scale(1.04)' : 'scale(1)',
       position: 'relative',
       transition: 'all 200ms ease',
       display: 'flex',
       flexDirection: 'column',
     }}
-      onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 48px rgba(194,24,91,0.2)'; }}
-      onMouseLeave={e => { e.currentTarget.style.boxShadow = highlighted ? '0 8px 40px rgba(194,24,91,0.2)' : 'var(--shadow-card)'; }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 12px 48px rgba(62,20,68,0.18)'; }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = highlighted ? '0 8px 40px rgba(62,20,68,0.18)' : 'var(--shadow-card)'; }}
     >
       {badge && (
         <div style={{
@@ -97,10 +97,10 @@ export default function PricingCard({ plan }) {
         fontSize: 15,
         cursor: 'pointer',
         transition: 'all 200ms',
-        boxShadow: highlighted ? '0 4px 16px rgba(194,24,91,0.3)' : 'none',
+        boxShadow: highlighted ? '0 4px 16px rgba(62,20,68,0.28)' : 'none',
       }}
         onMouseEnter={e => {
-          e.target.style.background = highlighted ? '#a01550' : 'var(--color-primary)';
+          e.target.style.background = highlighted ? 'var(--crimson-deep)' : 'var(--color-primary)';
           e.target.style.color = 'white';
           e.target.style.transform = 'scale(1.02)';
         }}

@@ -12,7 +12,7 @@ function useReveal() {
   return ref;
 }
 
-const HERO_IMG = 'https://images.unsplash.com/photo-1547592180-85f173990554?w=1400&q=80&auto=format&fit=crop';
+const HERO_IMG = 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1400&q=85&auto=format&fit=crop';
 
 const PRODUCTS_TO_AVOID = [
   { name: 'Alcohol & spirits', note: 'No safe amount in pregnancy. Avoid completely.' },
@@ -64,13 +64,13 @@ export default function FoodGuide() {
   };
 
   return (
-    <div className="page-wrap" style={{ paddingTop:72 }}>
+    <div className="page-wrap" style={{ paddingTop:0 }}>
       {/* Hero */}
-      <section style={{ position:'relative', height:'clamp(340px,50vh,500px)', display:'flex', alignItems:'flex-end', overflow:'hidden' }}>
+      <section style={{ position:'relative', height:'clamp(280px,42vh,420px)', display:'flex', alignItems:'flex-end', overflow:'hidden' }}>
         <img src={HERO_IMG} alt="Nigerian food" style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(26,10,0,0.3) 0%, rgba(26,10,0,0.85) 100%)' }}/>
-        <div style={{ position:'relative', zIndex:1, maxWidth:1240, margin:'0 auto', width:'100%', padding:'0 clamp(16px,4vw,48px) 56px' }}>
-          <div className="badge" style={{ background:'rgba(224,122,95,0.25)', color:'var(--gold-bright)', display:'inline-flex', marginBottom:16 }}>
+        <div style={{ position:'relative', zIndex:1, maxWidth:1240, margin:'0 auto', width:'100%', padding:'0 clamp(16px,4vw,48px) 40px' }}>
+          <div className="badge" style={{ background:'rgba(138,100,146,0.25)', color:'var(--amber)', display:'inline-flex', marginBottom:16 }}>
 Medically reviewed by a registered Nigerian dietitian
           </div>
           <h1 className="display-xl" style={{ color:'white', maxWidth:700 }}>The Nigerian Pregnancy Food Guide</h1>
@@ -80,12 +80,22 @@ Medically reviewed by a registered Nigerian dietitian
         </div>
       </section>
 
+      {/* Disclaimer banner */}
+      <div style={{ background:'#FFFBEB', borderBottom:'1px solid #FDE68A', padding:'8px clamp(16px,4vw,48px)' }}>
+        <div style={{ maxWidth:1240, margin:'0 auto', display:'flex', gap:10, alignItems:'center' }}>
+          <span style={{ fontSize:16, flexShrink:0 }}>⚕️</span>
+          <p style={{ fontSize:'0.8125rem', color:'#92400E', lineHeight:1.55 }}>
+            <strong>This guide is for general information only.</strong> Every pregnancy is different. Always check with your doctor, midwife, or a registered dietitian before making changes to your diet during pregnancy.
+          </p>
+        </div>
+      </div>
+
       {/* Safety Legend */}
-      <div style={{ background:'var(--white)', padding:'20px clamp(16px,4vw,48px)', borderBottom:'1px solid rgba(156,74,58,0.07)', position:'sticky', top:72, zIndex:100 }}>
-        <div style={{ maxWidth:1240, margin:'0 auto', display:'flex', gap:16, flexWrap:'wrap', alignItems:'center', justifyContent:'space-between' }}>
-          <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
+      <div style={{ background:'var(--white)', padding:'12px clamp(16px,4vw,48px)', borderBottom:'1px solid rgba(62,20,68,0.08)', position:'sticky', top:80, zIndex:100 }}>
+        <div style={{ maxWidth:1240, margin:'0 auto', display:'flex', gap:12, flexWrap:'wrap', alignItems:'center', justifyContent:'space-between' }}>
+          <div style={{ display:'flex', gap:10, flexWrap:'wrap' }}>
             {Object.entries(safetyCfg).map(([k,v]) => (
-              <span key={k} className="badge" style={{ background:v.bg, color:v.color }}>{v.label}</span>
+              <span key={k} className="badge" style={{ background:v.bg, color:v.color, border:`1px solid ${v.border}` }}>{v.label}</span>
             ))}
           </div>
           {/* Trimester filter */}
@@ -102,10 +112,10 @@ Medically reviewed by a registered Nigerian dietitian
       </div>
 
       {/* Foods Grid */}
-      <section ref={r2} className="reveal" style={{ background:'var(--ivory)', padding:'clamp(40px,6vw,80px) clamp(16px,4vw,48px)' }}>
+      <section ref={r2} className="reveal" style={{ background:'var(--ivory)', padding:'clamp(12px,2vw,24px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
           {/* Search + safety filter */}
-          <div style={{ display:'flex', gap:12, marginBottom:32, flexWrap:'wrap' }}>
+          <div style={{ display:'flex', gap:10, marginBottom:16, flexWrap:'wrap' }}>
             <div style={{ position:'relative', flex:'1 1 280px' }}>
               <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', color:'var(--earth-light)' }}>
                 <Icon name="search" size={16} />
@@ -129,8 +139,8 @@ Medically reviewed by a registered Nigerian dietitian
             </div>
           ) : (
             <>
-              <p style={{ fontSize:'0.8125rem', color:'var(--earth-light)', marginBottom:20 }}>Showing {filtered.length} foods</p>
-              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px,1fr))', gap:16 }}>
+              <p style={{ fontSize:'0.8125rem', color:'var(--earth-light)', marginBottom:12 }}>Showing {filtered.length} foods</p>
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(240px,1fr))', gap:12 }}>
                 {filtered.map(food => <FoodCardNew key={food.id} food={food} cfg={safetyCfg[food.safety]}/>)}
               </div>
             </>
@@ -139,9 +149,9 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Products to Avoid + Vitamins */}
-      <section ref={r3} className="reveal" style={{ background:'var(--ivory-dark)', padding:'clamp(60px,8vw,100px) clamp(16px,4vw,48px)' }}>
-        <div style={{ maxWidth:1240, margin:'0 auto', display:'grid', gridTemplateColumns:'1.1fr 0.9fr', gap:24 }}>
-          <div className="card" style={{ padding:'28px 24px' }}>
+      <section ref={r3} className="reveal" style={{ background:'var(--ivory)', padding:'clamp(20px,3vw,36px) clamp(16px,4vw,48px)', borderTop:'1px solid var(--earth-pale)' }}>
+        <div style={{ maxWidth:1240, margin:'0 auto', display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,340px),1fr))', gap:24 }}>
+          <div className="card" style={{ padding:'22px 20px' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:16 }}>
               <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.4rem', color:'var(--ink)' }}>Products to Avoid</h3>
               <span className="badge badge-crimson">Safety first</span>
@@ -156,15 +166,15 @@ Medically reviewed by a registered Nigerian dietitian
             </div>
           </div>
 
-          <div className="card" style={{ padding:'28px 24px' }}>
+          <div className="card" style={{ padding:'22px 20px' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:16 }}>
               <h3 style={{ fontFamily:'var(--font-display)', fontSize:'1.4rem', color:'var(--ink)' }}>Good Vitamins</h3>
-              <span className="badge badge-gold">Ask your doctor</span>
+              <span className="badge badge-amber">Ask your doctor</span>
             </div>
             <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
               {VITAMINS.map(v => (
-                <div key={v.name} style={{ display:'flex', gap:12, padding:'12px 14px', borderRadius:12, background:'var(--gold-pale)', border:'1.5px solid rgba(224,122,95,0.15)' }}>
-                  <div style={{ width:8, borderRadius:10, background:'var(--gold)' }}/>
+                <div key={v.name} style={{ display:'flex', gap:12, padding:'12px 14px', borderRadius:12, background:'var(--amber-pale)', border:'1.5px solid rgba(138,100,146,0.18)' }}>
+                  <div style={{ width:8, borderRadius:10, background:'var(--amber)' }}/>
                   <div>
                     <p style={{ fontWeight:700, color:'var(--ink)', marginBottom:4 }}>{v.name}</p>
                     <p style={{ fontSize:'0.8125rem', color:'var(--earth-mid)', lineHeight:1.6 }}>{v.why}</p>
@@ -180,13 +190,13 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Glossary */}
-      <section ref={r4} className="reveal" style={{ background:'var(--ivory)', padding:'clamp(60px,8vw,100px) clamp(16px,4vw,48px)' }}>
+      <section ref={r4} className="reveal" style={{ background:'var(--cream)', padding:'clamp(16px,2.5vw,28px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
-          <div style={{ textAlign:'center', marginBottom:36 }}>
-            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:14 }}>Pregnancy Glossary</p>
+          <div style={{ textAlign:'center', marginBottom:18 }}>
+            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:10 }}>Pregnancy Glossary</p>
             <h2 className="display-md">Common words, simple meanings</h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(240px, 1fr))', gap:16 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px, 1fr))', gap:12 }}>
             {GLOSSARY.map(g => (
               <div key={g.term} className="card" style={{ padding:'20px 18px' }}>
                 <p style={{ fontWeight:700, color:'var(--ink)', marginBottom:6 }}>{g.term}</p>
@@ -198,13 +208,17 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Meal Plans */}
-      <section className="reveal" style={{ background:'var(--ivory-dark)', padding:'clamp(60px,8vw,100px) clamp(16px,4vw,48px)' }}>
+      <section className="reveal" style={{ background:'var(--ivory)', padding:'clamp(14px,2.5vw,28px) clamp(16px,4vw,48px)', borderTop:'1px solid var(--earth-pale)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
-          <div style={{ textAlign:'center', marginBottom:40 }}>
-            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:16 }}>Sample Plans</p>
-            <h2 className="display-md">7-Day Nigerian Pregnancy Meal Plans</h2>
+          <div style={{ textAlign:'center', marginBottom:16 }}>
+            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:10 }}>Sample Plans</p>
+            <h2 className="display-md">7-Day Nigerian Pregnancy Meal Ideas</h2>
+            <p style={{ color:'var(--earth-mid)', fontSize:'0.9rem', marginTop:10, lineHeight:1.65 }}>
+              These are general meal ideas based on common Nigerian pregnancy nutrition guidelines.<br/>
+              <strong style={{ color:'var(--ink)' }}>Your doctor or dietitian should review your actual diet plan.</strong>
+            </p>
           </div>
-          <div style={{ display:'flex', gap:8, marginBottom:36, justifyContent:'center', flexWrap:'wrap' }}>
+          <div style={{ display:'flex', gap:8, marginBottom:16, justifyContent:'center', flexWrap:'wrap' }}>
             {[['first','1st Trimester'],['second','2nd Trimester'],['third','3rd Trimester']].map(([id,lb]) => (
               <button key={id} onClick={()=>setMealTab(id)} className="btn" style={{
                 background: mealTab===id?'var(--crimson)':'transparent',
@@ -213,10 +227,10 @@ Medically reviewed by a registered Nigerian dietitian
               }}>{lb}</button>
             ))}
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(300px,1fr))', gap:16 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(260px,1fr))', gap:12 }}>
             {mealPlans[mealTab].map((day,i) => (
               <div key={i} className="card" style={{ overflow:'hidden' }}>
-                <div style={{ background:'linear-gradient(135deg, var(--crimson), var(--gold))', padding:'14px 20px' }}>
+                <div style={{ background:'linear-gradient(135deg, var(--crimson), var(--amber))', padding:'14px 20px' }}>
                   <p style={{ fontFamily:'var(--font-display)', fontSize:'1.1rem', color:'white', fontWeight:700 }}>{day.day}</p>
                 </div>
                 <div style={{ padding:'18px 20px' }}>
@@ -239,16 +253,16 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Herbs Warning */}
-      <section ref={r5} className="reveal" style={{ background:'linear-gradient(150deg, var(--ink) 0%, var(--crimson-deep) 100%)', padding:'clamp(60px,8vw,100px) clamp(16px,4vw,48px)' }}>
+      <section ref={r5} className="reveal" style={{ background:'linear-gradient(150deg, #1C0A0E 0%, var(--crimson-deep) 100%)', padding:'clamp(20px,3vw,36px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
-          <div style={{ textAlign:'center', marginBottom:48 }}>
-            <div className="badge" style={{ background:'rgba(255,100,100,0.2)', color:'#EF9A9A', display:'inline-flex', marginBottom:20 }}>Important Safety Information</div>
+          <div style={{ textAlign:'center', marginBottom:20 }}>
+            <div className="badge" style={{ background:'rgba(255,100,100,0.2)', color:'#EF9A9A', display:'inline-flex', marginBottom:14 }}>Important Safety Information</div>
             <h2 className="display-md" style={{ color:'white', marginBottom:16 }}>Local Herbs — Know What's Safe</h2>
             <p style={{ color:'rgba(255,255,255,0.65)', maxWidth:580, margin:'0 auto', lineHeight:1.75 }}>
               Our mothers have deep herbal wisdom. But pregnancy changes everything. These herbs need serious caution.
             </p>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px,1fr))', gap:16 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(240px,1fr))', gap:12 }}>
             {herbs.map(h => (
               <div key={h.id} style={{ background:'rgba(255,255,255,0.05)', borderRadius:16, padding:'20px', border:`1px solid ${h.dangerLevel==='high'?'rgba(239,154,154,0.3)':'rgba(255,204,128,0.3)'}`, transition:'all var(--dur-mid)' }}
                 onMouseEnter={e=>e.currentTarget.style.background='rgba(255,255,255,0.09)'}
@@ -266,9 +280,53 @@ Medically reviewed by a registered Nigerian dietitian
               </div>
             ))}
           </div>
-          <div style={{ marginTop:40, background:'rgba(255,255,255,0.06)', borderRadius:16, padding:'20px 24px', border:'1px solid rgba(255,255,255,0.08)', textAlign:'center' }}>
+          <div style={{ marginTop:24, background:'rgba(255,255,255,0.06)', borderRadius:16, padding:'18px 20px', border:'1px solid rgba(255,255,255,0.08)', textAlign:'center' }}>
             <p style={{ color:'rgba(255,255,255,0.8)', fontSize:'0.9375rem', lineHeight:1.7 }}>
               <strong style={{ color:'white' }}>Always tell your doctor or midwife</strong> about any herbs, supplements, or local remedies you're taking during pregnancy.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Common Pregnancy Symptoms & Bodily Changes */}
+      <section className="reveal" style={{ background:'var(--cream)', padding:'clamp(20px,3vw,36px) clamp(16px,4vw,48px)' }}>
+        <div style={{ maxWidth:1240, margin:'0 auto' }}>
+          <div style={{ textAlign:'center', marginBottom:18 }}>
+            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:12 }}>What to Expect</p>
+            <h2 className="display-md">Common Symptoms &amp; Bodily Changes</h2>
+            <p style={{ color:'var(--earth-mid)', fontSize:'0.875rem', lineHeight:1.65, maxWidth:560, margin:'10px auto 0' }}>
+              Every pregnancy is different, but these are symptoms many Nigerian mamas experience. <strong>Always speak to your doctor</strong> if something feels severe or worrying.
+            </p>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,260px),1fr))', gap:12 }}>
+            {[
+              { emoji:'🤢', title:'Morning Sickness', desc:'Nausea and vomiting, especially in the first trimester. Ginger tea, small frequent meals, and dry crackers can help. Severe cases (hyperemesis) need medical attention.' },
+              { emoji:'😴', title:'Extreme Fatigue', desc:'Your body is doing enormous work building a new life. Rest without guilt. Iron-rich foods like ugu and liver can help combat pregnancy anaemia.' },
+              { emoji:'🤸', title:'Back & Pelvic Pain', desc:'The pregnancy hormone relaxin loosens your joints. Gentle walking, sleeping with a pillow between your knees, and avoiding heavy lifting helps.' },
+              { emoji:'🦶', title:'Swollen Feet & Ankles', desc:'Very common from the second trimester. Elevate your feet when resting, stay hydrated, and reduce salt. Sudden severe swelling needs doctor review.' },
+              { emoji:'💓', title:'Heartburn & Acid Reflux', desc:'Your growing uterus pushes stomach acid up. Eat smaller meals, avoid spicy food late at night, and sit upright after eating.' },
+              { emoji:'💧', title:'Frequent Urination', desc:'Normal throughout pregnancy as your uterus presses on the bladder. Do not reduce water intake — staying hydrated is important for you and baby.' },
+              { emoji:'😤', title:'Shortness of Breath', desc:'Especially in the third trimester as baby takes up more space. Rest, avoid lying flat on your back, and sleep propped up with pillows.' },
+              { emoji:'🧠', title:'Pregnancy Brain / Forgetfulness', desc:'Hormonal changes affect memory and concentration. Write things down, set reminders, and be gentle with yourself — it is temporary.' },
+              { emoji:'😖', title:'Leg Cramps', desc:'Common especially at night. Stay hydrated, stretch your calves before bed, and try gentle massage. Magnesium-rich foods like nuts can help.' },
+              { emoji:'🌡️', title:'Constipation', desc:'Pregnancy hormones slow digestion. Drink plenty of water, eat fibre-rich Nigerian foods like beans, garden eggs, and ugu leaves, and stay active.' },
+              { emoji:'😢', title:'Mood Swings', desc:'Hormonal shifts affect emotions significantly. This is completely normal. Reach out to the Mama Village community or speak to a professional if you feel overwhelmed.' },
+              { emoji:'🔴', title:'Stretch Marks', desc:'As skin stretches, marks may appear on the belly, thighs, or breasts. Shea butter and coconut oil keep skin moisturised and supple.' },
+            ].map(s => (
+              <div key={s.title} style={{ background:'white', borderRadius:16, padding:'20px 18px', border:'1px solid var(--earth-pale)', transition:'box-shadow var(--dur-fast)' }}
+                onMouseEnter={e=>e.currentTarget.style.boxShadow='0 4px 16px rgba(0,0,0,0.07)'}
+                onMouseLeave={e=>e.currentTarget.style.boxShadow='none'}
+              >
+                <div style={{ fontSize:28, marginBottom:10 }}>{s.emoji}</div>
+                <p style={{ fontWeight:700, fontSize:'0.9375rem', color:'var(--ink)', marginBottom:6 }}>{s.title}</p>
+                <p style={{ fontSize:'0.8125rem', color:'var(--earth-mid)', lineHeight:1.65 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop:24, background:'var(--crimson-pale)', borderRadius:16, padding:'16px 20px', border:'1px solid rgba(123,45,62,0.15)', display:'flex', gap:12, alignItems:'flex-start' }}>
+            <span style={{ fontSize:20, flexShrink:0 }}>⚕️</span>
+            <p style={{ fontSize:'0.85rem', color:'var(--ink-soft)', lineHeight:1.65 }}>
+              <strong>When to call your doctor immediately:</strong> Heavy bleeding, severe abdominal pain, sudden severe headache, blurred vision, fever above 38°C, reduced or absent baby movements, or waters breaking before 37 weeks. When in doubt — call.
             </p>
           </div>
         </div>
@@ -281,20 +339,20 @@ function FoodCardNew({ food, cfg }) {
   const [open, setOpen] = useState(false);
   const tLabels = { first:'1st', second:'2nd', third:'3rd' };
   return (
-    <div onClick={()=>setOpen(o=>!o)} className="card" style={{ padding:'20px', cursor:'pointer', borderTop:`3px solid ${cfg.color}` }}>
+    <div onClick={()=>setOpen(o=>!o)} className="card" style={{ padding:'16px', cursor:'pointer', borderTop:`3px solid ${cfg.color}` }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, marginBottom:10 }}>
-        <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-          <div style={{ width:56, height:56, borderRadius:12, overflow:'hidden', background:'var(--ivory-dark)', border:`1.5px solid ${cfg.border}` }}>
+        <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+          <div style={{ width:48, height:48, borderRadius:10, overflow:'hidden', background:'var(--ivory-dark)', border:`1.5px solid ${cfg.border}` }}>
             {food.image && <img src={food.image} alt={food.name} loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover' }}/>}
           </div>
-          <h3 style={{ fontFamily:'var(--font-serif)', fontSize:'1rem', fontWeight:600, color:'var(--ink)', lineHeight:1.3 }}>{food.name}</h3>
+          <h3 style={{ fontFamily:'var(--font-serif)', fontSize:'0.95rem', fontWeight:600, color:'var(--ink)', lineHeight:1.3 }}>{food.name}</h3>
         </div>
         <span style={{ fontSize:12, color:'var(--earth-light)', flexShrink:0 }}>{open?'▲':'▼'}</span>
       </div>
-      <span className="badge" style={{ background:cfg.bg, color:cfg.color, marginBottom:10 }}>{cfg.label}</span>
-      <div style={{ display:'flex', gap:4, flexWrap:'wrap', marginBottom:10 }}>
+      <span className="badge" style={{ background:cfg.bg, color:cfg.color, marginBottom:8 }}>{cfg.label}</span>
+      <div style={{ display:'flex', gap:4, flexWrap:'wrap', marginBottom:8 }}>
         {food.trimesters.map(t=>(
-          <span key={t} className="badge" style={{ background:'var(--gold-soft)', color:'var(--gold)', fontSize:'0.7rem' }}>{tLabels[t]} Trim</span>
+          <span key={t} className="badge" style={{ background:'var(--amber-soft)', color:'var(--amber)', fontSize:'0.7rem' }}>{tLabels[t]} Trim</span>
         ))}
       </div>
       <p style={{ fontSize:'0.8125rem', color:'var(--earth-mid)', lineHeight:1.65, display:'-webkit-box', WebkitLineClamp: open?'unset':2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>

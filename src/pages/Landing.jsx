@@ -30,9 +30,9 @@ const IMG = {
 
 const STATS = [
   { value: '14,000+', label: 'Nigerian Mamas' },
-  { value: '40',      label: 'Weeks Tracked'   },
-  { value: '20+',     label: 'Foods Reviewed'  },
-  { value: '6',       label: 'Hospitals Listed' },
+  { value: '40',      label: 'Weeks Covered'   },
+  { value: '50+',     label: 'Foods Reviewed'  },
+  { value: '100%',    label: 'Free to Join'    },
 ];
 
 
@@ -54,12 +54,12 @@ export default function Landing() {
   useReveal();
 
   return (
-    <div className="page-wrap" style={{ paddingTop: 72, overflow: 'hidden' }}>
+    <div className="page-wrap" style={{ paddingTop: 0, overflow: 'hidden' }}>
 
       {/* ════ HERO ════ */}
       <section style={{
         position: 'relative',
-        height: 'calc(100vh - 72px)',
+        height: '100vh',
         minHeight: 600,
         overflow: 'hidden',
         display: 'flex',
@@ -75,7 +75,7 @@ export default function Landing() {
         {/* Layered gradient: top-left dark for text legibility, bottom stays lighter */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(105deg, rgba(26,16,8,0.82) 0%, rgba(26,16,8,0.55) 50%, rgba(26,16,8,0.1) 100%)',
+          background: 'linear-gradient(105deg, rgba(28,10,14,0.82) 0%, rgba(28,10,14,0.50) 50%, rgba(28,10,14,0.08) 100%)',
         }}/>
 
         {/* Content — bottom-left anchored */}
@@ -84,9 +84,9 @@ export default function Landing() {
           width: '100%',
           maxWidth: 1200,
           margin: '0 auto',
-          padding: 'clamp(40px,6vw,80px) clamp(24px,5vw,80px)',
+          padding: 'clamp(40px,6vw,80px) clamp(20px,5vw,80px)',
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
           gap: 'clamp(32px,5vw,80px)',
           alignItems: 'flex-end',
         }}>
@@ -95,18 +95,18 @@ export default function Landing() {
           <div>
             <p className="animate-fadeInUp" style={{
               fontSize: '0.6875rem', fontWeight: 700, letterSpacing: '0.16em',
-              textTransform: 'uppercase', color: 'rgba(232,135,26,0.9)',
+              textTransform: 'uppercase', color: 'var(--amber)',
               marginBottom: 20,
             }}>
               Nigeria's Pregnancy Platform
             </p>
 
             <h1 className="animate-fadeInUp anim-delay-1" style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: 'clamp(2.6rem,5.5vw,4.8rem)',
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.8rem,5.8vw,5rem)',
               fontWeight: 700,
-              lineHeight: 1.07,
-              letterSpacing: '-0.03em',
+              lineHeight: 1.02,
+              letterSpacing: '-0.02em',
               color: 'white',
               marginBottom: 24,
             }}>
@@ -116,43 +116,19 @@ export default function Landing() {
             </h1>
 
             <p className="animate-fadeInUp anim-delay-2" style={{
-              fontSize: '1.0625rem',
+              fontSize: '1.1rem',
               color: 'rgba(255,255,255,0.68)',
               lineHeight: 1.75,
               marginBottom: 36,
-              maxWidth: 420,
+              maxWidth: 520,
               fontWeight: 400,
             }}>
-              Week-by-week guidance, Nigerian food advice, hospital reviews, and a community of 14,000+ women who get it.
+              Week-by-week guidance, Nigerian food safety advice, and a community of 14,000+ women who truly get it — all completely free.
             </p>
 
             <div className="animate-fadeInUp anim-delay-3" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 36 }}>
-              <Link to="/join" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                background: 'var(--crimson)', color: 'white',
-                padding: '14px 28px', borderRadius: 'var(--radius-full)',
-                fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '0.9375rem',
-                transition: 'all var(--dur-mid) var(--ease)',
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--crimson-deep)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'var(--crimson)'; e.currentTarget.style.transform = 'translateY(0)'; }}
-              >
-                Start for free
-              </Link>
-              <Link to="/food-guide" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                background: 'rgba(255,255,255,0.1)', color: 'white',
-                padding: '14px 28px', borderRadius: 'var(--radius-full)',
-                fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: '0.9375rem',
-                border: '1.5px solid rgba(255,255,255,0.25)',
-                backdropFilter: 'blur(8px)',
-                transition: 'all var(--dur-mid) var(--ease)',
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.18)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
-              >
-                Explore the guide
-              </Link>
+              <Link to="/join" className="btn btn-primary btn-lg">Start for free</Link>
+              <Link to="/food-guide" className="btn btn-ghost btn-lg">Explore the guide</Link>
             </div>
 
             {/* Social proof */}
@@ -175,7 +151,7 @@ export default function Landing() {
           {/* Right — floating stat cards (desktop only) */}
           <div className="hide-mobile" style={{ display: 'flex', flexDirection: 'column', gap: 14, alignSelf: 'flex-end', paddingBottom: 8 }}>
 
-            {/* Week tracker card */}
+            {/* Food guide card */}
             <div className="animate-float" style={{
               background: 'rgba(255,255,255,0.08)',
               backdropFilter: 'blur(20px)',
@@ -191,13 +167,12 @@ export default function Landing() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <rect x="3" y="5" width="14" height="12" rx="2" stroke="white" strokeWidth="1.5"/>
-                  <path d="M7 3v4M13 3v4M3 9h14" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M10 3C6.686 3 4 5.686 4 9c0 2.21 1.196 4.143 2.97 5.2L7 17h6l.03-2.8C14.804 13.143 16 11.21 16 9c0-3.314-2.686-6-6-6z" stroke="white" strokeWidth="1.5"/>
                 </svg>
               </div>
               <div>
-                <p style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>Week tracker</p>
-                <p style={{ fontSize: '1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-sans)' }}>Week 24 — Ear of corn</p>
+                <p style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>Food Guide</p>
+                <p style={{ fontSize: '1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-sans)' }}>20+ Nigerian foods rated</p>
               </div>
             </div>
 
@@ -224,8 +199,8 @@ export default function Landing() {
                 </svg>
               </div>
               <div>
-                <p style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>Active now</p>
-                <p style={{ fontSize: '1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-sans)' }}>342 mamas online</p>
+                <p style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>The Mama Village</p>
+                <p style={{ fontSize: '1rem', fontWeight: 700, color: 'white', fontFamily: 'var(--font-sans)' }}>14,000+ mamas talking</p>
               </div>
             </div>
 
@@ -233,11 +208,12 @@ export default function Landing() {
         </div>
 
         {/* Subtle bottom fade into next section */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, var(--white), transparent)', pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 120, background: 'linear-gradient(to top, var(--ivory), transparent)', pointerEvents: 'none' }}/>
+
       </section>
 
       {/* ════ STAT STRIP ════ */}
-      <div style={{ background: 'var(--white)', borderTop: '1px solid var(--earth-pale)', borderBottom: '1px solid var(--earth-pale)', padding: '20px 0', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--ivory)', borderTop: '1px solid var(--earth-pale)', borderBottom: '1px solid var(--earth-pale)', padding: '20px 0', overflow: 'hidden' }}>
         <div className="marquee-track">
           {[...STATS, ...STATS, ...STATS, ...STATS].map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 40, paddingRight: 64, flexShrink: 0 }}>
@@ -250,9 +226,10 @@ export default function Landing() {
           ))}
         </div>
       </div>
+      <div className="section-divider" />
 
       {/* ════ FEATURES ════ */}
-      <section style={{ background: 'var(--cream)', padding: 'clamp(80px,10vw,120px) clamp(24px,5vw,80px)' }}>
+      <section className="section-texture" style={{ background: 'var(--cream)', padding: 'clamp(80px,10vw,120px) clamp(24px,5vw,80px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="reveal" style={{ marginBottom: 64 }}>
             <p className="eyebrow" style={{ marginBottom: 16 }}>What we offer</p>
@@ -261,7 +238,7 @@ export default function Landing() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
+          <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
             {[
               {
                 img:   IMG.food,
@@ -277,15 +254,15 @@ export default function Landing() {
               },
               {
                 img:   IMG.community,
-                label: 'Mama Community',
-                text:  'A village of 14,000+ women who share your culture, your cravings, and your concerns.',
+                label: 'Mama Village Community',
+                text:  'A village of 14,000+ women — post anonymously, share experiences, and find real Nigerian support.',
                 to:    '/community',
               },
               {
-                img:   IMG.hospital,
-                label: 'Hospital Directory',
-                text:  'Honest reviews of Nigerian maternity hospitals, written by mamas who have been there.',
-                to:    '/hospitals',
+                img:   IMG.mother3,
+                label: 'Join Free — Always',
+                text:  'No subscriptions, no paywalls. Create an account with Google or email in under a minute.',
+                to:    '/join',
               },
             ].map((f, i) => (
               <Link key={f.label} to={f.to} className={`reveal reveal-delay-${i + 1}`} style={{ textDecoration: 'none', display: 'block', overflow: 'hidden', borderRadius: i === 0 ? '20px 0 0 20px' : i === 3 ? '0 20px 20px 0' : 0, position: 'relative', minHeight: 400 }}
@@ -294,7 +271,7 @@ export default function Landing() {
               >
                 <img src={f.img} alt={f.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, transition: 'transform 0.55s var(--ease)' }}/>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,16,8,0.85) 0%, rgba(26,16,8,0.3) 60%, transparent 100%)' }}/>
-                <div className="feature-overlay" style={{ position: 'absolute', inset: 0, background: 'rgba(192,39,45,0.15)', opacity: 0, transition: 'opacity 0.3s ease' }}/>
+                <div className="feature-overlay" style={{ position: 'absolute', inset: 0, background: 'rgba(138,100,146,0.22)', opacity: 0, transition: 'opacity 0.3s ease' }}/>
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 24px' }}>
                   <p style={{ fontSize: '0.6875rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 8 }}>
                     {f.label}
@@ -308,8 +285,8 @@ export default function Landing() {
       </section>
 
       {/* ════ TRACKER PREVIEW ════ */}
-      <section style={{ background: 'var(--white)', padding: 'clamp(80px,10vw,120px) clamp(24px,5vw,80px)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
+      <section style={{ background: 'var(--ivory)', padding: 'clamp(80px,10vw,120px) clamp(20px,5vw,80px)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
 
           {/* Left — cards */}
           <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -366,16 +343,16 @@ export default function Landing() {
       </section>
 
       {/* ════ FOOD GUIDE — HERO FEATURE ════ */}
-      <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)' }}>
+      <section style={{ position: 'relative', overflow: 'hidden', background: '#1C0A0E' }}>
         {/* Full-bleed food photo */}
-        <img src={IMG.food} alt="Nigerian food" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}/>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(17,24,39,0.97) 0%, rgba(17,24,39,0.8) 55%, rgba(17,24,39,0.4) 100%)' }}/>
+        <img src={IMG.food} alt="Nigerian food" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.38 }}/>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(28,10,14,0.97) 0%, rgba(28,10,14,0.78) 55%, rgba(28,10,14,0.35) 100%)' }}/>
 
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: 'clamp(80px,10vw,120px) clamp(24px,5vw,80px)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: 'clamp(80px,10vw,120px) clamp(20px,5vw,80px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
 
           {/* Left — copy */}
           <div className="reveal">
-            <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(217,43,58,0.9)', color:'white', padding:'5px 14px', borderRadius:'var(--radius-full)', fontSize:'0.6875rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:24 }}>
+            <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'var(--crimson)', color:'white', padding:'5px 14px', borderRadius:'var(--radius-full)', fontSize:'0.6875rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:24 }}>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 3.6H11L8.4 6.8l.9 3.7L6 8.5l-3.3 2 .9-3.7L1 4.6h3.8z" fill="white"/></svg>
               Nigeria's #1 Feature
             </div>
@@ -429,11 +406,11 @@ export default function Landing() {
       {/* ════ COMMUNITY ════ */}
       <section style={{ position: 'relative', overflow: 'hidden', minHeight: 600, display: 'flex', alignItems: 'center' }}>
         <img src={IMG.community} alt="Nigerian mothers community" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}/>
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,16,8,0.78)' }}/>
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', width: '100%', padding: 'clamp(80px,10vw,120px) clamp(24px,5vw,80px)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(28,10,14,0.78)' }}/>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', width: '100%', padding: 'clamp(80px,10vw,120px) clamp(20px,5vw,80px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }}>
 
           <div className="reveal">
-            <p className="eyebrow" style={{ color: 'rgba(232,135,26,0.9)', marginBottom: 20 }}>The Mama Village</p>
+            <p className="eyebrow" style={{ color: 'var(--amber)', marginBottom: 20 }}>The Mama Village</p>
             <h2 className="display-lg" style={{ color: 'white', marginBottom: 20 }}>
               You don't have to do this alone.
             </h2>
@@ -473,12 +450,12 @@ export default function Landing() {
       </section>
 
       {/* ════ PHOTO GALLERY ════ */}
-      <section style={{ background: 'var(--cream)', padding: 'clamp(60px,8vw,100px) clamp(24px,5vw,80px)' }}>
+      <section className="section-texture" style={{ background: 'var(--cream)', padding: 'clamp(60px,8vw,100px) clamp(20px,5vw,80px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="reveal" style={{ marginBottom: 40 }}>
             <p className="eyebrow" style={{ marginBottom: 16 }}>A community that looks like you</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: 12 }}>
+          <div className="photo-gallery-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: 12 }}>
             <div className="reveal photo-frame" style={{ gridRow: '1 / 3', borderRadius: 20 }}>
               <img src={IMG.mother2} alt="Nigerian mama" loading="lazy"/>
             </div>
@@ -500,17 +477,17 @@ export default function Landing() {
 
       {/* ════ FINAL CTA ════ */}
       <section style={{
-        background: 'var(--ink)',
+        background: '#1C0A0E',
         padding: 'clamp(80px,12vw,140px) clamp(24px,5vw,80px)',
         textAlign: 'center',
         position: 'relative', overflow: 'hidden',
       }}>
-        {/* Subtle crimson glow */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 400, background: 'radial-gradient(ellipse, rgba(192,39,45,0.18) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+        {/* Subtle amber glow */}
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 400, background: 'radial-gradient(ellipse, rgba(180,146,181,0.18) 0%, transparent 70%)', pointerEvents: 'none' }}/>
 
         <div style={{ maxWidth: 560, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div className="reveal">
-            <img src="/Mama.png?v=4" alt="" style={{ height: 68, margin: '0 auto 32px', filter: 'brightness(0) invert(1)', opacity: 0.6 }}/>
+            <img src="/logo.png" alt="NaijaMama" style={{ height: 72, margin: '0 auto 32px', objectFit: 'contain' }}/>
             <h2 className="display-lg" style={{ color: 'white', marginBottom: 20 }}>Your village is waiting</h2>
             <p style={{ fontSize: '1.0625rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, marginBottom: 40 }}>
               Join 14,000+ Nigerian mamas getting the guidance, food advice, and community support they deserve.

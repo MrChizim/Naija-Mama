@@ -55,7 +55,7 @@ export default function CommunityPost({ post, onSave }) {
             </span>
             <span style={{
               padding: '2px 8px',
-              background: 'rgba(194,24,91,0.1)',
+              background: 'var(--crimson-pale)',
               color: 'var(--color-primary)',
               borderRadius: 20,
               fontFamily: 'var(--font-accent)',
@@ -135,7 +135,7 @@ export default function CommunityPost({ post, onSave }) {
         {post.tags.map(tag => (
           <span key={tag} style={{
             padding: '3px 10px',
-            background: 'rgba(194,24,91,0.06)',
+            background: 'var(--crimson-pale)',
             color: 'var(--color-primary)',
             borderRadius: 20,
             fontFamily: 'var(--font-accent)',
@@ -153,7 +153,7 @@ export default function CommunityPost({ post, onSave }) {
         display: 'flex',
         gap: 16,
         paddingTop: 12,
-        borderTop: '1px solid rgba(194,24,91,0.08)',
+        borderTop: '1px solid var(--earth-pale)',
       }}>
         <button onClick={handleHelpful} style={{
           display: 'flex', alignItems: 'center', gap: 5,

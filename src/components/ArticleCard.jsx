@@ -32,7 +32,7 @@ export default function ArticleCard({ article }) {
         <span style={{
           display: 'inline-block',
           padding: '3px 10px',
-          background: categoryColor || 'rgba(194,24,91,0.1)',
+          background: categoryColor || 'var(--crimson-pale)',
           color: 'var(--color-primary)',
           borderRadius: 20,
           fontFamily: 'var(--font-accent)',

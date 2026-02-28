@@ -3,19 +3,34 @@ import { useSearchParams } from 'react-router-dom';
 import { weekData } from '../data/weeks';
 import Icon from '../components/Icon';
 
-const HERO = 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=1400&q=80&auto=format&fit=crop';
+
+const HERO = 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1400&q=85&auto=format&fit=crop';
+
+/* Week-by-week size emoji — Nigerian fruits & familiar items */
+const SIZE_EMOJI = {
+  1: '🌱', 2: '🌱', 3: '🌱', 4: '🫘',
+  5: '🫘', 6: '🫐', 7: '🫐', 8: '🍇',
+  9: '🍈', 10: '🍈', 11: '🍋', 12: '🍋',
+  13: '🍊', 14: '🍊', 15: '🍑', 16: '🥑',
+  17: '🥑', 18: '🌽', 19: '🌽', 20: '🥭',
+  21: '🥭', 22: '🥭', 23: '🍆', 24: '🌽',
+  25: '🌽', 26: '🥬', 27: '🥦', 28: '🥥',
+  29: '🥥', 30: '🎃', 31: '🎃', 32: '🍉',
+  33: '🍉', 34: '🍉', 35: '🍉', 36: '🍈',
+  37: '🥬', 38: '🥬', 39: '🍼', 40: '👶',
+};
 
 function CircularProgress({ percent, week, trimester }) {
   const r = 54;
   const circ = 2 * Math.PI * r;
   const offset = circ - (percent / 100) * circ;
-  const trimColors = { first: 'var(--gold)', second: 'var(--crimson)', third: 'var(--crimson-deep)' };
+  const trimColors = { first: 'var(--amber)', second: 'var(--crimson)', third: 'var(--crimson-deep)' };
   const color = trimColors[trimester] || 'var(--crimson)';
 
   return (
     <div style={{ position: 'relative', width: 140, height: 140, flexShrink: 0 }}>
       <svg width="140" height="140" style={{ transform: 'rotate(-90deg)' }}>
-        <circle cx="70" cy="70" r={r} fill="none" stroke="rgba(156,74,58,0.1)" strokeWidth="12" />
+        <circle cx="70" cy="70" r={r} fill="none" stroke="rgba(138,100,146,0.12)" strokeWidth="12" />
         <circle
           cx="70" cy="70" r={r} fill="none"
           stroke={color} strokeWidth="12"
@@ -40,11 +55,8 @@ function CircularProgress({ percent, week, trimester }) {
 
 export default function Tracker() {
   const [searchParams] = useSearchParams();
-  const initialWeek = parseInt(searchParams.get('week')) || 24;
+  const initialWeek = parseInt(searchParams.get('week')) || 1;
   const [selectedWeek, setSelectedWeek] = useState(Math.min(Math.max(initialWeek, 1), 40));
-  const [dueDate, setDueDate] = useState('');
-  const [lmpDate, setLmpDate] = useState('');
-  const [computedDue, setComputedDue] = useState(null);
   const weekScrollRef = useRef(null);
 
   const data = weekData[selectedWeek];
@@ -52,40 +64,10 @@ export default function Tracker() {
   const trimester = data?.trimester || 'second';
 
   const trimesterLabel = {
-    first:  { label: 'First Trimester',  range: 'Weeks 1–13',  color: 'var(--gold)' },
+    first:  { label: 'First Trimester',  range: 'Weeks 1–13',  color: 'var(--amber)' },
     second: { label: 'Second Trimester', range: 'Weeks 14–26', color: 'var(--crimson)' },
     third:  { label: 'Third Trimester',  range: 'Weeks 27–40', color: 'var(--crimson-deep)' },
   };
-
-  useEffect(() => {
-    if (dueDate) {
-      const due = new Date(dueDate);
-      const today = new Date();
-      const diffDays = Math.round((due - today) / (1000 * 60 * 60 * 24));
-      const daysPregnant = 280 - diffDays;
-      const weeksPregnant = Math.max(1, Math.min(40, Math.round(daysPregnant / 7)));
-      setSelectedWeek(weeksPregnant);
-    }
-  }, [dueDate]);
-
-  useEffect(() => {
-    if (!lmpDate) {
-      setComputedDue(null);
-      return;
-    }
-    const lmp = new Date(lmpDate);
-    if (Number.isNaN(lmp.getTime())) return;
-    const due = new Date(lmp);
-    due.setDate(due.getDate() + 280);
-    setComputedDue(due);
-    const today = new Date();
-    const diffDays = Math.round((due - today) / (1000 * 60 * 60 * 24));
-    const daysPregnant = 280 - diffDays;
-    const weeksPregnant = Math.max(1, Math.min(40, Math.round(daysPregnant / 7)));
-    setSelectedWeek(weeksPregnant);
-  }, [lmpDate]);
-
-  const formatDate = (d) => d ? d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
   useEffect(() => {
     const el = weekScrollRef.current;
@@ -97,15 +79,15 @@ export default function Tracker() {
   const tInfo = trimesterLabel[trimester];
 
   return (
-    <div style={{ paddingTop: 72, minHeight: '100vh', background: 'var(--ivory)' }}>
+    <div style={{ paddingTop: 0, minHeight: '100vh', background: 'var(--ivory)' }}>
 
       {/* Hero */}
       <section style={{ position: 'relative', height: 'clamp(280px,38vh,400px)', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
         <img src={HERO} alt="Pregnancy tracker" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}/>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,10,0,0.2) 0%, rgba(26,10,0,0.88) 100%)' }}/>
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto', width: '100%', padding: '0 clamp(16px,4vw,48px) 48px' }}>
-          <div className="badge" style={{ background: 'rgba(224,122,95,0.25)', color: 'var(--gold-bright)', display: 'inline-flex', gap: 6, marginBottom: 14 }}>
-            <Icon name="heart" size={14} color="var(--gold-bright)" />
+          <div className="badge" style={{ background: 'rgba(138,100,146,0.25)', color: 'var(--amber-soft)', display: 'inline-flex', gap: 6, marginBottom: 14 }}>
+            <Icon name="heart" size={14} color="var(--amber-soft)" />
             Week-by-Week Guide
           </div>
           <h1 className="display-xl" style={{ color: 'white', maxWidth: 620 }}>Your Pregnancy Tracker</h1>
@@ -113,58 +95,18 @@ export default function Tracker() {
         </div>
       </section>
 
-      {/* Due Date Bar */}
-      <div style={{ background: 'var(--white)', padding: '20px clamp(16px,4vw,48px)', borderBottom: '1px solid rgba(156,74,58,0.07)', boxShadow: '0 4px 16px rgba(0,0,0,0.05)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-            <label style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)', whiteSpace: 'nowrap' }}>
-              <Icon name="calendar" size={14} />
-              I know my due date:
-            </label>
-            <input
-              type="date"
-              value={dueDate}
-              onChange={e => setDueDate(e.target.value)}
-              className="input"
-              style={{ width: 'auto', flex: '0 0 auto' }}
-              aria-label="Due date"
-            />
-            {dueDate && (
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: 'var(--crimson)', fontWeight: 700 }}>
-                You are on Week {selectedWeek}!
-              </span>
-            )}
-          </div>
-
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
-            <label style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)', whiteSpace: 'nowrap' }}>
-              <Icon name="calculator" size={14} />
-              First day of your last period:
-            </label>
-            <input
-              type="date"
-              value={lmpDate}
-              onChange={e => setLmpDate(e.target.value)}
-              className="input"
-              style={{ width: 'auto', flex: '0 0 auto' }}
-              aria-label="First day of last period"
-            />
-            {computedDue && (
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', color: 'var(--crimson)', fontWeight: 700 }}>
-                Estimated due date: {formatDate(computedDue)}
-              </span>
-            )}
-            {computedDue && (
-              <span style={{ fontSize: '0.75rem', color: 'var(--earth-light)' }}>
-                Based on a 28‑day cycle
-              </span>
-            )}
-          </div>
+      {/* Disclaimer banner */}
+      <div style={{ background: '#FFFBEB', borderBottom: '1px solid #FDE68A', padding: '12px clamp(16px,4vw,48px)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 10, alignItems: 'center' }}>
+          <span style={{ fontSize: 16, flexShrink: 0 }}>⚕️</span>
+          <p style={{ fontSize: '0.8125rem', color: '#92400E', lineHeight: 1.55 }}>
+            <strong>Medical disclaimer:</strong> This tracker provides general educational information only. It does not replace advice from your doctor, midwife, or healthcare provider. Always consult a qualified professional for medical guidance during pregnancy.
+          </p>
         </div>
       </div>
 
       {/* Week Selector */}
-      <div style={{ background: 'var(--white)', padding: '16px 0', boxShadow: '0 2px 12px rgba(156,74,58,0.06)', position: 'sticky', top: 72, zIndex: 100 }}>
+      <div style={{ background: 'var(--white)', padding: '16px 0', boxShadow: '0 2px 12px rgba(62,20,68,0.08)', position: 'sticky', top: 80, zIndex: 100 }}>
         <div ref={weekScrollRef} style={{
           display: 'flex', gap: 8, overflowX: 'auto',
           padding: '6px clamp(16px,4vw,48px)',
@@ -173,7 +115,7 @@ export default function Tracker() {
           {Array.from({ length: 40 }, (_, i) => i + 1).map(w => {
             const wTrimester = w <= 13 ? 'first' : w <= 26 ? 'second' : 'third';
             const isSelected = w === selectedWeek;
-            const trimBg = { first: 'var(--gold)', second: 'var(--crimson)', third: 'var(--crimson-deep)' };
+            const trimBg = { first: 'var(--amber)', second: 'var(--crimson)', third: 'var(--crimson-deep)' };
             return (
               <button
                 key={w}
@@ -181,7 +123,7 @@ export default function Tracker() {
                 onClick={() => setSelectedWeek(w)}
                 style={{
                   width: 44, height: 44, borderRadius: '50%',
-                  border: isSelected ? 'none' : '1.5px solid rgba(156,74,58,0.18)',
+                  border: isSelected ? 'none' : '1.5px solid rgba(138,100,146,0.2)',
                   background: isSelected ? trimBg[wTrimester] : 'transparent',
                   color: isSelected ? 'white' : 'var(--earth-mid)',
                   fontFamily: 'var(--font-sans)',
@@ -191,7 +133,7 @@ export default function Tracker() {
                   flexShrink: 0,
                   transform: isSelected ? 'scale(1.18)' : 'scale(1)',
                   transition: 'all 200ms ease',
-                  boxShadow: isSelected ? '0 4px 12px rgba(156,74,58,0.3)' : 'none',
+                  boxShadow: isSelected ? '0 4px 12px rgba(62,20,68,0.28)' : 'none',
                 }}
               >
                 {w}
@@ -217,13 +159,29 @@ export default function Tracker() {
                 Week {selectedWeek}
               </span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ color: 'var(--crimson)' }}>
-                <Icon name={data?.babySizeIcon || 'seed'} size={28} color="var(--crimson)" />
-              </span>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 16,
+              background: 'var(--crimson-pale)', borderRadius: 16, padding: '14px 18px',
+              border: '1.5px solid rgba(62,20,68,0.15)', maxWidth: '100%',
+            }}>
+              <div style={{
+                width: 56, height: 56, borderRadius: 14,
+                background: 'white', border: '2px solid rgba(62,20,68,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0, fontSize: 30, lineHeight: 1,
+              }}>
+                {SIZE_EMOJI[selectedWeek] || '🌱'}
+              </div>
               <div>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', color: 'var(--earth-light)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>Baby's size this week</p>
-                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.0625rem', color: 'var(--ink)', fontWeight: 600 }}>{data?.babySize}</p>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.68rem', color: 'var(--crimson)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4 }}>
+                  Baby's size — Week {selectedWeek}
+                </p>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', color: 'var(--ink)', fontWeight: 700, lineHeight: 1.25 }}>
+                  About the size of {data?.babySize?.toLowerCase().replace(/^a(n)? /i, '') || 'a poppy seed'}
+                </p>
+                <p style={{ fontSize: '0.75rem', color: 'var(--earth-mid)', marginTop: 2 }}>
+                  General comparison — every baby grows differently
+                </p>
               </div>
             </div>
           </div>
@@ -233,10 +191,10 @@ export default function Tracker() {
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--earth-light)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Pregnancy Progress
             </p>
-            <div style={{ height: 10, background: 'rgba(156,74,58,0.1)', borderRadius: 5, overflow: 'hidden', marginBottom: 6 }}>
+            <div style={{ height: 10, background: 'rgba(138,100,146,0.1)', borderRadius: 5, overflow: 'hidden', marginBottom: 6 }}>
               <div style={{
                 height: '100%', width: `${percent}%`,
-                background: 'linear-gradient(90deg, var(--gold), var(--crimson))',
+                background: 'linear-gradient(90deg, var(--crimson-soft), var(--crimson))',
                 borderRadius: 5, transition: 'width 0.6s ease',
               }}/>
             </div>
@@ -253,9 +211,9 @@ export default function Tracker() {
               ].map(t => (
                 <div key={t.label} style={{
                   flex: 1, padding: '7px 8px',
-                  background: t.key === trimester ? 'rgba(156,74,58,0.08)' : 'rgba(0,0,0,0.03)',
+                  background: t.key === trimester ? 'rgba(62,20,68,0.06)' : 'rgba(0,0,0,0.03)',
                   borderRadius: 10, textAlign: 'center',
-                  border: t.key === trimester ? '1.5px solid rgba(156,74,58,0.25)' : '1.5px solid transparent',
+                  border: t.key === trimester ? '1.5px solid rgba(138,100,146,0.3)' : '1.5px solid transparent',
                 }}>
                   <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: t.key === trimester ? 700 : 500, color: t.key === trimester ? 'var(--crimson)' : 'var(--earth-light)' }}>
                     {t.label} Trim
@@ -273,7 +231,7 @@ export default function Tracker() {
           {/* Baby Development */}
           <div className="card" style={{ padding: '24px' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(156,74,58,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(62,20,68,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Icon name="baby" size={18} color="var(--crimson)" />
               </span>
               Baby's Development
@@ -296,7 +254,7 @@ export default function Tracker() {
           {/* Your Body */}
           <div className="card" style={{ padding: '24px' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(156,74,58,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(62,20,68,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Icon name="pregnant" size={18} color="var(--crimson)" />
               </span>
               Your Body This Week
@@ -311,14 +269,21 @@ export default function Tracker() {
             </ul>
           </div>
 
-          {/* What to Eat */}
+          {/* Nutrition - general guidance, no specific prescriptions */}
           <div className="card" style={{ padding: '24px', background: 'var(--ivory-dark)' }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(156,74,58,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(62,20,68,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Icon name="food" size={18} color="var(--crimson)" />
               </span>
-              What to Eat This Week
+              Nutrition Guide
             </h3>
+            {/* Disclaimer */}
+            <div style={{ background: '#FFFBEB', border: '1px solid #FDE68A', borderRadius: 10, padding: '9px 12px', marginBottom: 14, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+              <span style={{ fontSize: 14, flexShrink: 0, lineHeight: 1 }}>⚕️</span>
+              <p style={{ fontSize: '0.72rem', color: '#92400E', lineHeight: 1.55 }}>
+                These are general Nigerian foods known to support pregnancy. <strong>Always confirm your specific diet with your doctor or registered dietitian.</strong>
+              </p>
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {data?.foods.map((food, i) => (
                 <div key={i} style={{ background: 'var(--white)', borderRadius: 12, padding: '12px 14px', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
@@ -353,7 +318,7 @@ export default function Tracker() {
             </div>
 
             {data?.antenatal && (
-              <div style={{ background: 'rgba(156,74,58,0.05)', borderRadius: 'var(--radius-lg)', padding: '22px', border: '1.5px solid rgba(156,74,58,0.2)', boxShadow: 'var(--shadow-card)' }}>
+              <div style={{ background: 'var(--crimson-pale)', borderRadius: 'var(--radius-lg)', padding: '22px', border: '1.5px solid rgba(138,100,146,0.25)', boxShadow: 'var(--shadow-card)' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--crimson)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
                   <Icon name="hospital" size={16} color="var(--crimson)" />
                   Antenatal Reminder
@@ -390,12 +355,12 @@ export default function Tracker() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <section style={{ background: 'linear-gradient(150deg,var(--crimson-deep) 0%,var(--ink) 100%)', padding: 'clamp(60px,8vw,100px) clamp(16px,4vw,48px)', textAlign: 'center', marginTop: 48 }}>
+      {/* Community CTA */}
+      <section style={{ background: 'linear-gradient(150deg,var(--crimson-deep) 0%, #180825 100%)', padding: 'clamp(60px,8vw,100px) clamp(16px,4vw,48px)', textAlign: 'center', marginTop: 48 }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
-          <h2 className="display-md" style={{ color: 'white', marginBottom: 16 }}>Share your journey with the village</h2>
-          <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 28, lineHeight: 1.75 }}>Connect with other Nigerian mamas at the same week as you. Ask questions, share experiences, find support.</p>
-          <a href="/community" className="btn btn-gold btn-lg" style={{ display:'inline-flex', alignItems:'center', gap:8 }}>
+          <h2 className="display-md" style={{ color: 'white', marginBottom: 16 }}>Talk to 14,000+ Nigerian mamas</h2>
+          <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 28, lineHeight: 1.75 }}>Questions, experiences, hospital advice — real Nigerian women who understand what you're going through.</p>
+          <a href="/community" className="btn btn-amber btn-lg" style={{ display:'inline-flex', alignItems:'center', gap:8 }}>
             <Icon name="heart" size={16} color="white" />
             Join the Mama Village
           </a>

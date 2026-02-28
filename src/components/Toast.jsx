@@ -26,7 +26,7 @@ export default function Toast({ message, onClose }) {
       fontFamily: 'var(--font-accent)',
       fontSize: 15,
       fontWeight: 500,
-      boxShadow: '0 8px 32px rgba(194,24,91,0.3)',
+      boxShadow: '0 8px 32px rgba(62,20,68,0.28)',
       zIndex: 9999,
       display: 'flex',
       alignItems: 'center',

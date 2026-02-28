@@ -50,7 +50,7 @@ export default function Hospitals() {
   });
 
   return (
-    <div className="page-wrap" style={{ paddingTop:72, background:'var(--white)', minHeight:'100vh' }}>
+    <div className="page-wrap" style={{ paddingTop:0, background:'var(--ivory)', minHeight:'100vh' }}>
 
       {/* ── Hero ── */}
       <section style={{ position:'relative', height:'clamp(420px,58vh,600px)', display:'flex', alignItems:'flex-end', overflow:'hidden' }}>
@@ -68,7 +68,7 @@ export default function Hospitals() {
         </div>
 
         <div style={{ position:'relative', zIndex:1, maxWidth:1240, margin:'0 auto', width:'100%', padding:'0 clamp(16px,4vw,48px) 64px' }}>
-          <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(217,43,58,0.9)', color:'white', padding:'6px 16px', borderRadius:'var(--radius-full)', fontSize:'0.75rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:20 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(62,20,68,0.9)', color:'white', padding:'6px 16px', borderRadius:'var(--radius-full)', fontSize:'0.75rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:20 }}>
             <Icon name="hospital" size={13} color="white" />
             Reviewed by Nigerian Mamas
           </div>
@@ -101,7 +101,7 @@ export default function Hospitals() {
       </div>
 
       {/* ── Search + Filters ── */}
-      <div style={{ background:'var(--white)', padding:'20px clamp(16px,4vw,48px)', boxShadow:'0 2px 12px rgba(0,0,0,0.06)', position:'sticky', top:72, zIndex:100 }}>
+      <div style={{ background:'var(--ivory)', padding:'20px clamp(16px,4vw,48px)', boxShadow:'0 2px 12px rgba(0,0,0,0.06)', position:'sticky', top:80, zIndex:100 }}>
         <div style={{ maxWidth:1240, margin:'0 auto', display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
           <div style={{ position:'relative', flex:'1 1 280px' }}>
             <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', color:'var(--earth-light)' }}>
@@ -133,7 +133,7 @@ export default function Hospitals() {
             <p style={{ color:'var(--earth-mid)' }}>Try adjusting your search or filters.</p>
           </div>
         ) : (
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(360px,1fr))', gap:24 }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(min(100%,340px),1fr))', gap:24 }}>
             {filtered.map((h,i)=><HospCard key={h.id} h={h} index={i}/>)}
           </div>
         )}
@@ -141,7 +141,7 @@ export default function Hospitals() {
         {/* Coming soon map — better design */}
         <div className="reveal" style={{ marginTop:48, borderRadius:24, overflow:'hidden', position:'relative', height:280 }}>
           <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=70&auto=format&fit=crop" alt="Map of Nigeria" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'saturate(0.4) brightness(0.9)' }}/>
-          <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(217,43,58,0.75) 0%, rgba(17,24,39,0.85) 100%)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12 }}>
+          <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(62,20,68,0.78) 0%, rgba(17,9,26,0.88) 100%)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12 }}>
             <div style={{ width:56, height:56, borderRadius:'50%', background:'rgba(255,255,255,0.15)', display:'flex', alignItems:'center', justifyContent:'center', border:'1.5px solid rgba(255,255,255,0.3)' }}>
               <Icon name="map" size={28} color="white" />
             </div>

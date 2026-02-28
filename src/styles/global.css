@@ -1,34 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Core brand — vivid, clean red */
-  --crimson:        #D92B3A;
-  --crimson-deep:   #A91E2C;
-  --crimson-soft:   #F4B8BE;
-  --crimson-pale:   #FEF0F1;
+  /* Core brand — Night Plum */
+  --crimson:        #3E1444;   /* Night Plum — primary actions, CTAs */
+  --crimson-deep:   #260C35;   /* Deep Plum — hover states, dark sections */
+  --crimson-soft:   #8A6492;   /* Lilac — softer accents, icons */
+  --crimson-pale:   #EDE3EF;   /* Very pale plum tint for bg washes */
 
-  /* Warm accent */
-  --amber:          #F06C35;
-  --amber-deep:     #D4531E;
-  --amber-soft:     #FADDD1;
-  --amber-pale:     #FFF4EF;
+  /* Accent — Pale Plum + Rose Quartz */
+  --amber:          #B492B5;   /* Pale Plum — secondary accent */
+  --amber-deep:     #8A6492;   /* Lilac deep — hover on secondary */
+  --amber-soft:     #D5B0D8;   /* Rose Quartz — soft highlights */
+  --amber-pale:     #F2E8F3;   /* Palest plum wash */
 
-  /* Neutrals — clean, not brown */
-  --ink:            #111827;
-  --ink-mid:        #1F2937;
-  --ink-soft:       #374151;
-  --earth-mid:      #6B7280;
-  --earth-light:    #9CA3AF;
-  --earth-pale:     #E5E7EB;
-  --cream:          #F9FAFB;
-  --cream-dark:     #F3F4F6;
-  --ivory:          #F9FAFB;
-  --ivory-dark:     #F3F4F6;
+  /* Neutrals */
+  --ink:            #0B0B0B;
+  --ink-mid:        #15121A;
+  --ink-soft:       #2A2330;
+  --earth-mid:      #6E6676;
+  --earth-light:    #A6A0AE;
+  --earth-pale:     #E5E1EA;
+  --cream:          #FAF6FB;   /* Warm plum-tinted white */
+  --cream-dark:     #F0E8F2;   /* Slightly deeper plum wash */
+  --ivory:          #FDF9FE;   /* Almost white with plum warmth */
+  --ivory-dark:     #F2EBF4;
   --white:          #FFFFFF;
 
-  /* Typography */
-  --font-display:   'DM Serif Display', 'Cormorant Garamond', Georgia, serif;
-  --font-serif:     'Cormorant Garamond', Georgia, serif;
+  /* Typography — single font */
+  --font-display:   'Inter', system-ui, sans-serif;
+  --font-serif:     'Inter', system-ui, sans-serif;
   --font-sans:      'Inter', system-ui, sans-serif;
 
   /* Spacing / Shape */
@@ -38,11 +38,11 @@
   --radius-xl:      32px;
   --radius-full:    9999px;
 
-  /* Shadows — crisp */
+  /* Shadows */
   --shadow-sm:      0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-card:    0 4px 16px rgba(0,0,0,0.08);
-  --shadow-md:      0 8px 32px rgba(0,0,0,0.10);
-  --shadow-lg:      0 20px 56px rgba(0,0,0,0.13);
+  --shadow-card:    0 4px 16px rgba(0,0,0,0.07);
+  --shadow-md:      0 8px 32px rgba(0,0,0,0.09);
+  --shadow-lg:      0 20px 56px rgba(0,0,0,0.12);
 
   /* Motion */
   --ease:           cubic-bezier(0.22, 1, 0.36, 1);
@@ -55,7 +55,10 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
-  background: var(--white);
+  background:
+    radial-gradient(1200px 800px at 12% -10%, rgba(180,146,181,0.14), transparent 60%),
+    radial-gradient(900px 700px at 100% 0%, rgba(62,20,68,0.08), transparent 55%),
+    linear-gradient(180deg, #FDF9FE 0%, #FAF6FB 100%);
   color: var(--ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -92,13 +95,14 @@ img { max-width: 100%; display: block; }
   white-space: nowrap; text-decoration: none; letter-spacing: 0.01em;
 }
 .btn-primary { background: var(--crimson); color: white; }
-.btn-primary:hover { background: var(--crimson-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(217,43,58,0.32); }
+.btn-primary:hover { background: var(--crimson-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(62,20,68,0.30); }
 .btn-amber { background: var(--amber); color: white; }
-.btn-amber:hover { background: var(--amber-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(240,108,53,0.32); }
+.btn-amber:hover { background: var(--amber-deep); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(213,176,216,0.30); }
 .btn-outline { background: transparent; color: var(--crimson); border: 1.5px solid var(--crimson); }
 .btn-outline:hover { background: var(--crimson); color: white; transform: translateY(-2px); }
 .btn-ghost { background: rgba(255,255,255,0.12); color: white; border: 1.5px solid rgba(255,255,255,0.3); backdrop-filter: blur(8px); }
 .btn-ghost:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+.btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 .btn-subtle { background: var(--cream-dark); color: var(--ink); }
 .btn-subtle:hover { background: var(--earth-pale); transform: translateY(-2px); }
 .btn-sm { padding: 9px 18px; font-size: 0.8125rem; }
@@ -111,6 +115,7 @@ img { max-width: 100%; display: block; }
   background: var(--white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
+  border: 1px solid rgba(17,17,17,0.05);
   transition: transform var(--dur-mid) var(--ease), box-shadow var(--dur-mid) var(--ease);
 }
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
@@ -142,7 +147,6 @@ img { max-width: 100%; display: block; }
 @keyframes fadeInUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 @keyframes scaleIn   { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
 @keyframes marquee   { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-@keyframes shimmer   { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes rise      { from{opacity:0;transform:translateY(32px) scale(0.98)} to{opacity:1;transform:translateY(0) scale(1)} }
 @keyframes fadeIn    { from{opacity:0} to{opacity:1} }
 
@@ -157,11 +161,17 @@ img { max-width: 100%; display: block; }
 
 /* ── Gradient text ── */
 .gradient-text {
-  background: linear-gradient(120deg, var(--crimson) 0%, var(--amber) 100%);
+  background: linear-gradient(120deg, var(--crimson) 0%, var(--crimson-soft) 60%, var(--amber-soft) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Section backgrounds ── */
+.bg-rose    { background: var(--crimson-pale); }
+.bg-blush   { background: var(--cream); }
+.bg-ivory   { background: var(--ivory); }
+.bg-dark    { background: var(--ink); }
 
 /* ── Glass ── */
 .glass { background: rgba(255,255,255,0.14); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.22); }
@@ -187,7 +197,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-sans); font-size: 0.9375rem; color: var(--ink);
   outline: none; transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
 }
-.input:focus { border-color: var(--crimson); box-shadow: 0 0 0 3px rgba(217,43,58,0.08); }
+.input:focus { border-color: var(--crimson); box-shadow: 0 0 0 3px rgba(62,20,68,0.12); }
 .input::placeholder { color: var(--earth-light); }
 
 /* ── Stars ── */
@@ -200,8 +210,76 @@ img { max-width: 100%; display: block; }
 
 /* ── Utility ── */
 .page-wrap { animation: rise 0.45s var(--ease) both; }
+.page-enter { animation: fadeIn 0.35s var(--ease) both; }
+
+/* ── Section divider ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(17,17,17,0.08) 20%, rgba(17,17,17,0.08) 80%, transparent 100%);
+  width: 100%;
+}
+
+/* ── Section texture (subtle plum tint) ── */
+.section-texture {
+  background-image:
+    radial-gradient(900px 500px at 100% 0%, rgba(62,20,68,0.12), transparent 60%),
+    radial-gradient(1200px 600px at 10% -10%, rgba(180,146,181,0.18), transparent 60%);
+}
+
 .scroll-x { display: flex; gap: 16px; overflow-x: auto; scrollbar-width: none; }
 .scroll-x::-webkit-scrollbar { display: none; }
 
 @media (max-width: 768px)  { .hide-mobile  { display: none !important; } }
 @media (min-width: 769px)  { .hide-desktop { display: none !important; } }
+
+/* ── Community mobile grid collapse ── */
+@media (max-width: 768px) {
+  .community-body {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Mobile layout fixes ── */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .features-grid > a {
+    border-radius: var(--radius-lg) !important;
+    min-height: 260px !important;
+  }
+  .photo-gallery-grid {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  .photo-gallery-grid > :first-child {
+    grid-row: unset !important;
+    grid-column: 1 / -1 !important;
+    height: 260px !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .footer-main-grid > div {
+    text-align: center;
+  }
+  .footer-brand-col img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-brand-col p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-brand-col > div {
+    justify-content: center;
+  }
+  .nav-spacer-mobile {
+    height: 72px;
+  }
+}
