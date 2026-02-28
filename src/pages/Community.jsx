@@ -1,91 +1,13 @@
 import { useState } from 'react';
 import { communityPosts, trendingTopics, FLAIRS, FLAIR_COLORS } from '../data/community';
+import {
+  Heart, MessageCircle, Bookmark, Pencil, X, Flag, Share2,
+  TrendingUp, UserX, Check, Info, ChevronDown, Flower2, CheckCircle2,
+} from 'lucide-react';
 
-/* ── Icons ── */
-function IconHeart({ filled, size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? 'var(--crimson)' : 'none'} stroke={filled ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-    </svg>
-  );
-}
-function IconMessage({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  );
-}
-function IconBookmark({ filled, size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? 'var(--crimson)' : 'none'} stroke={filled ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-    </svg>
-  );
-}
-function IconPencil({ size = 18 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-    </svg>
-  );
-}
-function IconX({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
-  );
-}
-function IconFlag({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
-    </svg>
-  );
-}
-function IconShare({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
-    </svg>
-  );
-}
-function IconTrend({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-    </svg>
-  );
-}
-function IconAnon({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/><line x1="3" y1="3" x2="21" y2="21"/>
-    </svg>
-  );
-}
-function IconCheck({ size = 11 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-  );
-}
-function IconInfo({ size = 12 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="8"/><line x1="12" y1="12" x2="12" y2="16"/>
-    </svg>
-  );
-}
-function IconChevron({ size = 14, dir = 'down' }) {
+function ChevronIcon({ size = 14, dir = 'down' }) {
   const rot = { down: 0, up: 180, right: -90, left: 90 }[dir];
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: `rotate(${rot}deg)`, transition: 'transform 200ms' }}>
-      <polyline points="6 9 12 15 18 9"/>
-    </svg>
-  );
+  return <ChevronDown size={size} style={{ transform: `rotate(${rot}deg)`, transition: 'transform 200ms' }} strokeWidth="2" />;
 }
 
 /* ── Mock reply threads (attached to post ID) ── */
@@ -120,9 +42,7 @@ function Toast({ msg, onDone }) {
       animation: 'fadeInUp 0.3s var(--ease)',
       pointerEvents: 'none',
     }}>
-      <span style={{ width: 18, height: 18, background: '#2E7D32', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-        <IconCheck size={10}/>
-      </span>
+      <CheckCircle2 size={18} color="#2E7D32" strokeWidth="1.8" style={{ flexShrink: 0 }} />
       {msg}
     </div>
   );
@@ -169,7 +89,7 @@ function SidebarContent({ onCompose }) {
           cursor: 'pointer', border: 'none',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
         }}>
-          <IconPencil size={14}/> Write a post
+          <Pencil size={14} strokeWidth="2" /> Write a post
         </button>
       </div>
 
@@ -191,7 +111,7 @@ function SidebarContent({ onCompose }) {
 
       <div style={{ background: 'white', borderRadius: 16, border: '1px solid var(--earth-pale)', overflow: 'hidden' }}>
         <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--earth-pale)', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <IconTrend size={13}/>
+          <TrendingUp size={13} strokeWidth="2" />
           <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink)' }}>Trending</p>
         </div>
         <div style={{ padding: '6px 8px' }}>
@@ -364,6 +284,37 @@ export default function Community() {
 
         {/* Feed */}
         <div>
+          {/* ── Mobile sidebar accordion — at TOP before the feed ── */}
+          <div className="hide-desktop" style={{ marginBottom: 16 }}>
+            <button
+              onClick={() => setMobileSidebarOpen(o => !o)}
+              style={{
+                width: '100%', padding: '12px 18px',
+                background: 'white', border: '1px solid var(--earth-pale)',
+                borderRadius: mobileSidebarOpen ? '14px 14px 0 0' : 14,
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                cursor: 'pointer', fontFamily: 'var(--font-sans)',
+                fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)',
+              }}
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <TrendingUp size={14} strokeWidth="2" />
+                Village stats &amp; trending
+              </span>
+              <ChevronIcon size={16} dir={mobileSidebarOpen ? 'up' : 'down'} />
+            </button>
+            {mobileSidebarOpen && (
+              <div style={{
+                background: 'var(--cream)', padding: 16,
+                border: '1px solid var(--earth-pale)', borderTop: 'none',
+                borderRadius: '0 0 14px 14px',
+                display: 'flex', flexDirection: 'column', gap: 14,
+              }}>
+                <SidebarContent onCompose={() => setShowComposer(true)} />
+              </div>
+            )}
+          </div>
+
           {/* Feed controls */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, gap: 10 }}>
             <div style={{ display: 'flex', gap: 2, background: 'var(--cream)', borderRadius: 'var(--radius-full)', padding: 3, border: '1px solid var(--earth-pale)', flexShrink: 0 }}>
@@ -402,14 +353,14 @@ export default function Community() {
               cursor: 'pointer', border: 'none',
               boxShadow: '0 4px 16px rgba(62,20,68,0.25)', flexShrink: 0,
             }}>
-              <IconPencil size={14}/> <span className="hide-mobile">Write a post</span><span className="hide-desktop">Post</span>
+              <Pencil size={14} strokeWidth="2" /> <span className="hide-mobile">Write a post</span><span className="hide-desktop">Post</span>
             </button>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {sorted.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '56px 20px', background: 'white', borderRadius: 16, border: '1px solid var(--earth-pale)' }}>
-                <p style={{ fontSize: '2rem', marginBottom: 12 }}>🌸</p>
+                <div style={{ marginBottom: 12 }}><Flower2 size={32} color="var(--crimson-soft)" /></div>
                 <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>No posts here yet</p>
                 <p style={{ fontSize: '0.875rem', color: 'var(--earth-mid)' }}>Be the first mama to post in this topic.</p>
               </div>
@@ -424,36 +375,6 @@ export default function Community() {
             ))}
           </div>
 
-          {/* ── Mobile sidebar accordion ── */}
-          <div className="hide-desktop" style={{ marginTop: 24 }}>
-            <button
-              onClick={() => setMobileSidebarOpen(o => !o)}
-              style={{
-                width: '100%', padding: '14px 18px',
-                background: 'white', border: '1px solid var(--earth-pale)',
-                borderRadius: mobileSidebarOpen ? '14px 14px 0 0' : 14,
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                cursor: 'pointer', fontFamily: 'var(--font-sans)',
-                fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)',
-              }}
-            >
-              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <IconTrend size={15} />
-                Village stats &amp; trending
-              </span>
-              <IconChevron size={16} dir={mobileSidebarOpen ? 'up' : 'down'} />
-            </button>
-            {mobileSidebarOpen && (
-              <div style={{
-                background: 'var(--cream)', padding: 16,
-                border: '1px solid var(--earth-pale)', borderTop: 'none',
-                borderRadius: '0 0 14px 14px',
-                display: 'flex', flexDirection: 'column', gap: 14,
-              }}>
-                <SidebarContent onCompose={() => setShowComposer(true)} />
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Sidebar — desktop only */}
@@ -471,7 +392,7 @@ export default function Community() {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         boxShadow: '0 6px 24px rgba(62,20,68,0.4)', zIndex: 200,
       }}>
-        <IconPencil size={20}/>
+        <Pencil size={20} strokeWidth="2" />
       </button>
 
       {showComposer && (
@@ -489,7 +410,6 @@ export default function Community() {
 function PostCard({ post, expanded, onExpand, onToast }) {
   const [likes,       setLikes]       = useState(post.helpful);
   const [liked,       setLiked]       = useState(false);
-  const [meToo,       setMeToo]       = useState(false);
   const [saved,       setSaved]       = useState(false);
   const [reported,    setReported]    = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -533,7 +453,7 @@ function PostCard({ post, expanded, onExpand, onToast }) {
       <div style={{ display: 'flex', gap: 10, marginBottom: 10, alignItems: 'flex-start' }}>
         {isAnon ? (
           <div style={{ width: 38, height: 38, borderRadius: '50%', flexShrink: 0, background: 'var(--earth-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <IconAnon size={17}/>
+            <UserX size={17} strokeWidth="1.8" />
           </div>
         ) : (
           <div style={{ width: 38, height: 38, borderRadius: '50%', flexShrink: 0, background: post.avatarColor, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 14, fontFamily: 'var(--font-sans)' }}>
@@ -590,11 +510,7 @@ function PostCard({ post, expanded, onExpand, onToast }) {
         <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
           <Btn active={liked} activeBg="var(--crimson-pale)" activeColor="var(--crimson)" activeBorder="var(--crimson-soft)"
             onClick={() => { setLiked(l => !l); setLikes(n => liked ? n - 1 : n + 1); }}>
-            <IconHeart filled={liked} size={14}/> {likes}
-          </Btn>
-          <Btn active={meToo} activeBg="var(--amber-pale)" activeColor="var(--amber-deep)" activeBorder="var(--amber-soft)"
-            onClick={() => { setMeToo(m => !m); if (!meToo) onToast('Me too! 👋'); }}>
-            <span style={{ fontSize: 12 }}>👋</span> {meToo ? 'Me too!' : 'Me too'}
+            <Heart size={14} fill={liked ? 'var(--crimson)' : 'none'} stroke={liked ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" /> {likes}
           </Btn>
           {/* Replies — toggles thread */}
           <Btn
@@ -602,20 +518,20 @@ function PostCard({ post, expanded, onExpand, onToast }) {
             activeBg="var(--cream)" activeColor="var(--ink)" activeBorder="var(--earth-pale)"
             onClick={() => setShowReplies(r => !r)}
           >
-            <IconMessage size={14}/> {replyCount} {replyCount === 1 ? 'reply' : 'replies'}
+            <MessageCircle size={14} strokeWidth="1.8" /> {replyCount} {replyCount === 1 ? 'reply' : 'replies'}
           </Btn>
         </div>
         <div style={{ display: 'flex', gap: 6 }}>
           <Btn active={saved} activeBg="var(--crimson-pale)" activeColor="var(--crimson)" activeBorder="var(--crimson-soft)"
             onClick={() => { setSaved(s => !s); onToast(saved ? 'Removed from saved' : 'Saved!'); }}>
-            <IconBookmark filled={saved} size={14}/> {saved ? 'Saved' : 'Save'}
+            <Bookmark size={14} fill={saved ? 'var(--crimson)' : 'none'} stroke={saved ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" /> {saved ? 'Saved' : 'Save'}
           </Btn>
           <Btn onClick={handleWhatsApp}>
-            <IconShare size={14}/> Share
+            <Share2 size={14} strokeWidth="1.8" /> Share
           </Btn>
           {!reported ? (
             <Btn onClick={() => { setReported(true); onToast('Reported. Thank you.'); }}>
-              <IconFlag size={13}/> Report
+              <Flag size={13} strokeWidth="1.8" /> Report
             </Btn>
           ) : (
             <span style={{ fontSize: '0.75rem', color: 'var(--earth-light)', padding: '6px 4px' }}>Reported</span>
@@ -638,7 +554,7 @@ function PostCard({ post, expanded, onExpand, onToast }) {
             }}>
               {r.isAnon ? (
                 <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, background: 'var(--earth-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <IconAnon size={13}/>
+                  <UserX size={13} strokeWidth="1.8" />
                 </div>
               ) : (
                 <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, background: r.avatarColor, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 11 }}>
@@ -738,7 +654,7 @@ function ComposerModal({ onClose, onPost }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
           <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.0625rem', fontWeight: 700, color: 'var(--ink)' }}>Share your story</h3>
           <button onClick={onClose} style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--cream)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--earth-mid)', cursor: 'pointer', border: 'none' }}>
-            <IconX size={14}/>
+            <X size={14} strokeWidth="2.5" />
           </button>
         </div>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { ArrowUp, ChevronRight } from 'lucide-react';
 
 const NAV_LINKS = [
   { to: '/',           label: 'Home' },
@@ -231,9 +232,7 @@ export default function Navbar() {
               }}>
                 <span>{link.label}</span>
                 {isActive(link.to) && (
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3 7h8M8 4l3 3-3 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                  <ChevronRight size={14} stroke="white" strokeWidth="1.5" />
                 )}
               </Link>
             ))}
@@ -291,9 +290,7 @@ export default function Navbar() {
           onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.background = 'var(--crimson-deep)'; }}
           onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.background = 'var(--crimson)'; }}
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 12V4M4 8l4-4 4 4" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <ArrowUp size={16} stroke="white" strokeWidth="1.8" />
         </button>
       )}
     </>

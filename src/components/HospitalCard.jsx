@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import { Building2, Baby, MapPin, Navigation } from 'lucide-react';
 
 export default function HospitalCard({ hospital }) {
   const typeColors = {
@@ -61,7 +61,7 @@ export default function HospitalCard({ hospital }) {
           textTransform: 'capitalize',
         }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name={hospital.type === 'public' ? 'building' : hospital.type === 'private' ? 'hospital' : 'baby'} size={14} color={typeConfig.color} />
+            {hospital.type === 'maternity' ? <Baby size={14} color={typeConfig.color} strokeWidth="1.8" /> : <Building2 size={14} color={typeConfig.color} strokeWidth="1.8" />}
             {hospital.type === 'public' ? 'Public' : hospital.type === 'private' ? 'Private' : 'Maternity'}
           </span>
         </span>
@@ -70,7 +70,7 @@ export default function HospitalCard({ hospital }) {
       {/* Location */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         <span style={{ color: 'var(--color-text-light)' }}>
-          <Icon name="pin" size={14} color="var(--color-text-light)" />
+          <MapPin size={14} color="var(--color-text-light)" strokeWidth="1.8" />
         </span>
         <span style={{
           fontFamily: 'var(--font-body)',
@@ -175,7 +175,7 @@ export default function HospitalCard({ hospital }) {
           onMouseLeave={e => { e.target.style.filter = 'none'; e.target.style.transform = 'none'; }}
         >
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="directions" size={14} color="var(--color-text-dark)" />
+            <Navigation size={14} color="var(--color-text-dark)" strokeWidth="1.8" />
             Directions
           </span>
         </button>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Mail, Check } from 'lucide-react';
 
 const TOPICS = [
   'General enquiry',
@@ -10,14 +11,6 @@ const TOPICS = [
   'Other',
 ];
 
-function IconMail({ size = 22 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-      <polyline points="22,6 12,13 2,6"/>
-    </svg>
-  );
-}
 function IconInstagram({ size = 22 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -44,7 +37,7 @@ function IconFacebook({ size = 22 }) {
 
 const CONTACT_CHANNELS = [
   {
-    icon: <IconMail size={24} />,
+    icon: <Mail size={24} strokeWidth="1.8" />,
     title: 'Email us',
     value: 'hello@naijamama.ng',
     note: 'We respond within 24 hours on business days',
@@ -197,9 +190,7 @@ export default function Contact() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   margin: '0 auto 20px',
                 }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
+                  <Check size={28} stroke="var(--crimson)" strokeWidth="2" />
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.15rem', fontWeight: 700, color: 'var(--ink)', marginBottom: 10 }}>
                   Message sent!

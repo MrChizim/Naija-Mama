@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Icon from './Icon';
+import { Baby } from 'lucide-react';
 
 export default function WeekCard({ weekNum, data, compact = false }) {
   if (compact) {
@@ -26,7 +26,7 @@ export default function WeekCard({ weekNum, data, compact = false }) {
           W{weekNum}
         </div>
         <div style={{ marginBottom: 8, color: 'var(--crimson)' }}>
-          <Icon name={data?.babySizeIcon || 'seed'} size={22} color="var(--crimson)" />
+          <Baby size={22} color="var(--crimson)" strokeWidth="1.8" />
         </div>
         <p style={{
           fontFamily: 'var(--font-accent)',

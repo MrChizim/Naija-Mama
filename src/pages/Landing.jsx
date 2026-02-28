@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { weekData } from '../data/weeks';
+import { BookOpen, Users, Star, ArrowRight, ChevronRight } from 'lucide-react';
 
 function useReveal() {
   useEffect(() => {
@@ -166,9 +167,7 @@ export default function Landing() {
                 background: 'var(--crimson)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 3C6.686 3 4 5.686 4 9c0 2.21 1.196 4.143 2.97 5.2L7 17h6l.03-2.8C14.804 13.143 16 11.21 16 9c0-3.314-2.686-6-6-6z" stroke="white" strokeWidth="1.5"/>
-                </svg>
+                <BookOpen size={20} stroke="white" strokeWidth="1.5" />
               </div>
               <div>
                 <p style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>Food Guide</p>
@@ -191,12 +190,7 @@ export default function Landing() {
                 background: 'var(--amber)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <circle cx="7.5" cy="7.5" r="3" stroke="white" strokeWidth="1.5"/>
-                  <circle cx="13" cy="7" r="2.5" stroke="white" strokeWidth="1.5"/>
-                  <path d="M2 16c0-2.5 2.5-4 5.5-4s5.5 1.5 5.5 4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M13 12c2 0 4 1 4 3" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
+                <Users size={20} stroke="white" strokeWidth="1.5" />
               </div>
               <div>
                 <p style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>The Mama Village</p>
@@ -314,7 +308,7 @@ export default function Landing() {
                       <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--ink)', marginBottom: 2 }}>Week {w}</p>
                       <p style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)' }}>Baby is the size of {d?.babySize}</p>
                     </div>
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6 3l6 6-6 6" stroke="var(--earth-light)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                    <ChevronRight size={18} stroke="var(--earth-light)" strokeWidth="1.5" />
                   </div>
                 </Link>
               );
@@ -353,7 +347,7 @@ export default function Landing() {
           {/* Left — copy */}
           <div className="reveal">
             <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'var(--crimson)', color:'white', padding:'5px 14px', borderRadius:'var(--radius-full)', fontSize:'0.6875rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:24 }}>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 3.6H11L8.4 6.8l.9 3.7L6 8.5l-3.3 2 .9-3.7L1 4.6h3.8z" fill="white"/></svg>
+              <Star size={12} fill="white" stroke="none" />
               Nigeria's #1 Feature
             </div>
             <h2 className="display-lg" style={{ color: 'white', marginBottom: 20 }}>
@@ -395,7 +389,7 @@ export default function Landing() {
               <div style={{ padding: '14px 24px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                 <Link to="/food-guide" style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--amber)', display: 'flex', alignItems: 'center', gap: 6 }}>
                   See all 20+ foods rated
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <ArrowRight size={14} stroke="currentColor" strokeWidth="1.5" />
                 </Link>
               </div>
             </div>

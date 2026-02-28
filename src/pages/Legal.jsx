@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { Users, Shield, FileText, Mail, Clock } from 'lucide-react';
 
 const NAV_SECTIONS = [
   { id: 'about',   label: 'About Us' },
@@ -61,9 +62,7 @@ export default function Legal() {
         <section id="about" style={{ marginBottom: 64, scrollMarginTop: 140 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--crimson-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+              <Users size={18} stroke="var(--crimson)" strokeWidth="1.8" />
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(1.3rem,2.5vw,1.8rem)', fontWeight: 800, color: 'var(--ink)', letterSpacing: '-0.02em' }}>About Us</h2>
           </div>
@@ -107,9 +106,7 @@ export default function Legal() {
         <section id="privacy" style={{ marginBottom: 64, scrollMarginTop: 140 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--crimson-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
+              <Shield size={18} stroke="var(--crimson)" strokeWidth="1.8" />
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(1.3rem,2.5vw,1.8rem)', fontWeight: 800, color: 'var(--ink)', letterSpacing: '-0.02em' }}>Privacy Policy</h2>
           </div>
@@ -157,9 +154,7 @@ export default function Legal() {
         <section id="terms" style={{ marginBottom: 64, scrollMarginTop: 140 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--crimson-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-              </svg>
+              <FileText size={18} stroke="var(--crimson)" strokeWidth="1.8" />
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(1.3rem,2.5vw,1.8rem)', fontWeight: 800, color: 'var(--ink)', letterSpacing: '-0.02em' }}>Terms of Use</h2>
           </div>
@@ -207,9 +202,7 @@ export default function Legal() {
         <section id="contact-info" style={{ marginBottom: 24, scrollMarginTop: 140 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--crimson-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-              </svg>
+              <Mail size={18} stroke="var(--crimson)" strokeWidth="1.8" />
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(1.3rem,2.5vw,1.8rem)', fontWeight: 800, color: 'var(--ink)', letterSpacing: '-0.02em' }}>Contact</h2>
           </div>
@@ -219,9 +212,7 @@ export default function Legal() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ background: 'white', borderRadius: 14, padding: '16px 20px', border: '1px solid var(--earth-pale)', display: 'flex', alignItems: 'center', gap: 14 }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--crimson-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-                </svg>
+                <Mail size={16} stroke="var(--crimson)" strokeWidth="1.8" />
               </div>
               <div>
                 <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--earth-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>Email</p>
@@ -230,9 +221,7 @@ export default function Legal() {
             </div>
             <div style={{ background: 'white', borderRadius: 14, padding: '16px 20px', border: '1px solid var(--earth-pale)', display: 'flex', alignItems: 'center', gap: 14 }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--crimson-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                </svg>
+                <Clock size={16} stroke="var(--crimson)" strokeWidth="1.8" />
               </div>
               <div>
                 <p style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--earth-light)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>Response time</p>

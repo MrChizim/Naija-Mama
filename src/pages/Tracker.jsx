@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { weekData } from '../data/weeks';
-import Icon from '../components/Icon';
+import { Heart, Baby, User, Utensils, AlertTriangle, Building2, Clock, Stethoscope } from 'lucide-react';
 
 
 const HERO = 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1400&q=85&auto=format&fit=crop';
@@ -148,10 +148,7 @@ export default function Tracker() {
           }}>
             {/* Icon */}
             <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--crimson-pale)', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                <path d="M12 8v4l3 3"/>
-              </svg>
+              <Clock size={28} stroke="var(--crimson)" strokeWidth="1.8" />
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.3rem', fontWeight: 800, color: 'var(--ink)', marginBottom: 10, lineHeight: 1.2 }}>
               What week are you on?
@@ -217,7 +214,7 @@ export default function Tracker() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,10,0,0.2) 0%, rgba(26,10,0,0.88) 100%)' }}/>
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, margin: '0 auto', width: '100%', padding: '0 clamp(16px,4vw,48px) 48px' }}>
           <div className="badge" style={{ background: 'rgba(138,100,146,0.25)', color: 'var(--amber-soft)', display: 'inline-flex', gap: 6, marginBottom: 14 }}>
-            <Icon name="heart" size={14} color="var(--amber-soft)" />
+            <Heart size={14} color="var(--amber-soft)" strokeWidth="1.8" />
             Week-by-Week Guide
           </div>
           <h1 className="display-xl" style={{ color: 'white', maxWidth: 620 }}>Your Pregnancy Tracker</h1>
@@ -240,7 +237,7 @@ export default function Tracker() {
       {/* Disclaimer banner */}
       <div style={{ background: '#FFFBEB', borderBottom: '1px solid #FDE68A', padding: '12px clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 10, alignItems: 'center' }}>
-          <span style={{ fontSize: 16, flexShrink: 0 }}>⚕️</span>
+          <span style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}><Stethoscope size={16} stroke="#92400E" strokeWidth="1.8" /></span>
           <p style={{ fontSize: '0.8125rem', color: '#92400E', lineHeight: 1.55 }}>
             <strong>Medical disclaimer:</strong> This tracker provides general educational information only. It does not replace advice from your doctor, midwife, or healthcare provider. Always consult a qualified professional for medical guidance during pregnancy.
           </p>
@@ -311,9 +308,7 @@ export default function Tracker() {
                 background: 'var(--crimson)', flexShrink: 0,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
-                </svg>
+                <Baby size={24} stroke="white" strokeWidth="1.8" />
               </div>
               <div>
                 <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.68rem', color: 'var(--crimson)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4 }}>
@@ -375,7 +370,7 @@ export default function Tracker() {
           <div className="card" style={{ padding: '24px' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(62,20,68,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Icon name="baby" size={18} color="var(--crimson)" />
+                <Baby size={18} color="var(--crimson)" strokeWidth="1.8" />
               </span>
               Baby's Development
             </h3>
@@ -398,7 +393,7 @@ export default function Tracker() {
           <div className="card" style={{ padding: '24px' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(62,20,68,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Icon name="pregnant" size={18} color="var(--crimson)" />
+                <User size={18} color="var(--crimson)" strokeWidth="1.8" />
               </span>
               Your Body This Week
             </h3>
@@ -416,13 +411,13 @@ export default function Tracker() {
           <div className="card" style={{ padding: '24px', background: 'var(--ivory-dark)' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--ink)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(62,20,68,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Icon name="food" size={18} color="var(--crimson)" />
+                <Utensils size={18} color="var(--crimson)" strokeWidth="1.8" />
               </span>
               Nutrition Guide
             </h3>
             {/* Disclaimer */}
             <div style={{ background: '#FFFBEB', border: '1px solid #FDE68A', borderRadius: 10, padding: '9px 12px', marginBottom: 14, display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-              <span style={{ fontSize: 14, flexShrink: 0, lineHeight: 1 }}>⚕️</span>
+              <span style={{ flexShrink: 0, lineHeight: 1, display: 'flex', alignItems: 'center' }}><Stethoscope size={14} stroke="#92400E" strokeWidth="1.8" /></span>
               <p style={{ fontSize: '0.72rem', color: '#92400E', lineHeight: 1.55 }}>
                 These are general Nigerian foods known to support pregnancy. <strong>Always confirm your specific diet with your doctor or registered dietitian.</strong>
               </p>
@@ -444,7 +439,7 @@ export default function Tracker() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ background: '#FFF8E1', borderRadius: 'var(--radius-lg)', padding: '22px', border: '1.5px solid #FFE082', boxShadow: 'var(--shadow-card)' }}>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: '#E65100', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <Icon name="alert" size={16} color="#E65100" />
+                <AlertTriangle size={16} color="#E65100" strokeWidth="1.8" />
                 What to Watch For
               </h3>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -463,7 +458,7 @@ export default function Tracker() {
             {data?.antenatal && (
               <div style={{ background: 'var(--crimson-pale)', borderRadius: 'var(--radius-lg)', padding: '22px', border: '1.5px solid rgba(138,100,146,0.25)', boxShadow: 'var(--shadow-card)' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--crimson)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Icon name="hospital" size={16} color="var(--crimson)" />
+                  <Building2 size={16} color="var(--crimson)" strokeWidth="1.8" />
                   Antenatal Reminder
                 </h3>
                 <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: 'var(--ink)', lineHeight: 1.7 }}>
@@ -504,7 +499,7 @@ export default function Tracker() {
           <h2 className="display-md" style={{ color: 'white', marginBottom: 16 }}>Talk to 14,000+ Nigerian mamas</h2>
           <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 28, lineHeight: 1.75 }}>Questions, experiences, hospital advice — real Nigerian women who understand what you're going through.</p>
           <a href="/community" className="btn btn-amber btn-lg" style={{ display:'inline-flex', alignItems:'center', gap:8 }}>
-            <Icon name="heart" size={16} color="white" />
+            <Heart size={16} color="white" strokeWidth="1.8" />
             Join the Mama Village
           </a>
         </div>

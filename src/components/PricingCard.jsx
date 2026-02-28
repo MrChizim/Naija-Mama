@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import { Heart, Check } from 'lucide-react';
 
 export default function PricingCard({ plan }) {
   const { name, price, period, features, highlighted, badge, ctaLabel, icon } = plan;
@@ -40,7 +40,7 @@ export default function PricingCard({ plan }) {
 
       <div style={{ marginBottom: 20 }}>
         <div style={{ marginBottom: 8, color: 'var(--color-primary)' }}>
-          <Icon name={icon || 'heart'} size={28} color="var(--color-primary)" />
+          <Heart size={28} color="var(--color-primary)" strokeWidth="1.8" />
         </div>
         <h3 style={{
           fontFamily: 'var(--font-display)',
@@ -78,7 +78,7 @@ export default function PricingCard({ plan }) {
             lineHeight: 1.5,
           }}>
             <span style={{ flexShrink: 0, marginTop: 1 }}>
-              <Icon name="check" size={14} color="var(--color-primary)" />
+              <Check size={14} color="var(--color-primary)" strokeWidth="1.8" />
             </span>
             {f}
           </li>

@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import { User } from 'lucide-react';
 
 export default function ArticleCard({ article }) {
   const { category, title, excerpt, readTime, date, author, medicallyReviewed, categoryColor } = article;
@@ -24,7 +24,7 @@ export default function ArticleCard({ article }) {
         justifyContent: 'center',
         color: 'var(--color-primary)',
       }}>
-        <Icon name={article.icon || 'pregnant'} size={36} color="var(--color-primary)" />
+        <User size={36} color="var(--color-primary)" strokeWidth="1.8" />
       </div>
 
       <div style={{ padding: '16px 18px 18px' }}>

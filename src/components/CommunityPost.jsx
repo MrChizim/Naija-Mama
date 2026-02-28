@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Icon from './Icon';
+import { MapPin, Heart, MessageCircle, Bookmark } from 'lucide-react';
 
 export default function CommunityPost({ post, onSave }) {
   const [expanded, setExpanded] = useState(false);
@@ -76,7 +76,7 @@ export default function CommunityPost({ post, onSave }) {
               alignItems: 'center',
               gap: 6,
             }}>
-              <Icon name="pin" size={12} color="var(--color-secondary)" />
+              <MapPin size={12} color="var(--color-secondary)" strokeWidth="1.8" />
               {post.city}
             </span>
           </div>
@@ -164,7 +164,7 @@ export default function CommunityPost({ post, onSave }) {
           fontWeight: likedHelpful ? 600 : 400,
           transition: 'color 200ms',
         }}>
-          <Icon name="heart" size={14} color={likedHelpful ? 'var(--color-accent)' : 'var(--color-text-light)'} />
+          <Heart size={14} fill={likedHelpful ? 'var(--color-accent)' : 'none'} stroke={likedHelpful ? 'var(--color-accent)' : 'var(--color-text-light)'} strokeWidth="1.8" />
           {helpful}
         </button>
         <button style={{
@@ -174,7 +174,7 @@ export default function CommunityPost({ post, onSave }) {
           background: 'none', border: 'none', cursor: 'pointer',
           padding: 0,
         }}>
-          <Icon name="chat" size={14} color="var(--color-text-light)" />
+          <MessageCircle size={14} color="var(--color-text-light)" strokeWidth="1.8" />
           {post.replies}
         </button>
         <button onClick={handleSave} style={{
@@ -187,7 +187,7 @@ export default function CommunityPost({ post, onSave }) {
           fontWeight: saved ? 600 : 400,
           transition: 'color 200ms',
         }}>
-          <Icon name="heart" size={14} color={saved ? 'var(--color-primary)' : 'var(--color-text-light)'} />
+          <Bookmark size={14} fill={saved ? 'var(--color-primary)' : 'none'} stroke={saved ? 'var(--color-primary)' : 'var(--color-text-light)'} strokeWidth="1.8" />
           {saved ? 'Saved' : 'Save'}
         </button>
       </div>

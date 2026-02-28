@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { communityPosts } from '../data/community';
+import { Heart, MessageCircle, Bookmark, ArrowRight, Share2, UserX } from 'lucide-react';
 
 /* ── Colour map for trimester badges ── */
 const TRIMESTER_CFG = {
@@ -10,43 +11,6 @@ const TRIMESTER_CFG = {
   newmama: { label: 'New Mama',         bg: 'var(--amber-pale)', color: 'var(--amber-deep)' },
   general: { label: 'General',          bg: 'var(--cream)', color: 'var(--earth-mid)' },
 };
-
-/* ── Icons ── */
-function IconHeart({ filled, size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? 'var(--crimson)' : 'none'} stroke={filled ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-    </svg>
-  );
-}
-function IconMessage({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  );
-}
-function IconBookmark({ filled, size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? 'var(--crimson)' : 'none'} stroke={filled ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-    </svg>
-  );
-}
-function IconArrow({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-    </svg>
-  );
-}
-function IconShare({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
-    </svg>
-  );
-}
 
 /* ── Persistent saved IDs via localStorage ── */
 const STORAGE_KEY = 'naijamama_saved_ids';
@@ -85,7 +49,6 @@ function Toast({ msg, onDone }) {
 function SavedPostCard({ post, onUnsave }) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.helpful);
-  const [metoo, setMetoo] = useState(false);
   const tri = TRIMESTER_CFG[post.trimesterGroup] || TRIMESTER_CFG.general;
 
   const handleLike = () => {
@@ -117,9 +80,7 @@ function SavedPostCard({ post, onUnsave }) {
             background: 'var(--earth-pale)', display: 'flex', alignItems: 'center',
             justifyContent: 'center', flexShrink: 0,
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--earth-mid)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/><line x1="3" y1="3" x2="21" y2="21"/>
-            </svg>
+            <UserX size={16} strokeWidth="1.8" />
           </div>
         ) : (
           <div style={{
@@ -188,20 +149,8 @@ function SavedPostCard({ post, onUnsave }) {
           fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer',
           transition: 'all var(--dur-fast)',
         }}>
-          <IconHeart filled={liked} size={14} />
+          <Heart size={14} fill={liked ? 'var(--crimson)' : 'none'} stroke={liked ? 'var(--crimson)' : 'currentColor'} strokeWidth="1.8" />
           <span>{likeCount}</span>
-        </button>
-
-        {/* Me Too */}
-        <button onClick={() => setMetoo(m => !m)} style={{
-          display: 'flex', alignItems: 'center', gap: 5,
-          padding: '5px 10px', borderRadius: 'var(--radius-full)',
-          border: 'none', background: metoo ? 'var(--amber-pale)' : 'transparent',
-          color: metoo ? 'var(--amber-deep)' : 'var(--earth-mid)',
-          fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer',
-          transition: 'all var(--dur-fast)',
-        }}>
-          <span>👋</span><span>Me too</span>
         </button>
 
         {/* Replies */}
@@ -211,7 +160,7 @@ function SavedPostCard({ post, onUnsave }) {
           border: 'none', background: 'transparent',
           color: 'var(--earth-mid)', fontSize: '0.8rem', cursor: 'pointer',
         }}>
-          <IconMessage size={14} /><span>{post.replies}</span>
+          <MessageCircle size={14} strokeWidth="1.8" /><span>{post.replies}</span>
         </button>
 
         {/* WhatsApp share */}
@@ -222,7 +171,7 @@ function SavedPostCard({ post, onUnsave }) {
           color: 'var(--earth-mid)', fontSize: '0.8rem', cursor: 'pointer',
           transition: 'color var(--dur-fast)',
         }}>
-          <IconShare size={14} />
+          <Share2 size={14} strokeWidth="1.8" />
         </button>
 
         {/* Unsave / remove bookmark */}
@@ -234,7 +183,7 @@ function SavedPostCard({ post, onUnsave }) {
           color: 'var(--crimson)', fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer',
           transition: 'all var(--dur-fast)',
         }}>
-          <IconBookmark filled size={14} />
+          <Bookmark size={14} fill="var(--crimson)" stroke="var(--crimson)" strokeWidth="1.8" />
           <span>Saved</span>
         </button>
       </div>
@@ -256,9 +205,7 @@ function EmptyState() {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         margin: '0 auto 20px',
       }}>
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-        </svg>
+        <Bookmark size={32} stroke="var(--crimson)" strokeWidth="1.6" />
       </div>
       <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--ink)', marginBottom: 10 }}>
         No saved posts yet
@@ -276,7 +223,7 @@ function EmptyState() {
         onMouseLeave={e => e.currentTarget.style.background = 'var(--crimson)'}
       >
         Browse community
-        <IconArrow size={15} />
+        <ArrowRight size={15} strokeWidth="2" />
       </Link>
     </div>
   );
@@ -314,7 +261,7 @@ export default function Saved() {
               background: 'var(--crimson)', display: 'flex',
               alignItems: 'center', justifyContent: 'center',
             }}>
-              <IconBookmark filled size={22} />
+              <Bookmark size={22} fill="white" stroke="white" strokeWidth="1.6" />
             </div>
             <div>
               <h1 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'white', margin: 0 }}>
@@ -390,7 +337,7 @@ export default function Saved() {
                 onMouseLeave={e => e.currentTarget.style.background = 'var(--crimson)'}
               >
                 Back to Mama Village
-                <IconArrow size={14} />
+                <ArrowRight size={14} strokeWidth="2" />
               </Link>
             </div>
           </>

@@ -1,51 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-const FeatureIcons = {
-  community: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(213,176,216,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
-      <circle cx="18" cy="7" r="2.5"/><path d="M21 21v-1.5a3.5 3.5 0 0 0-2.5-3.35"/>
-    </svg>
-  ),
-  food: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(213,176,216,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.3 4.7 3.25 6H15.75A7.02 7.02 0 0 0 19 9a7 7 0 0 0-7-7z"/><rect x="9" y="15" width="6" height="2" rx="1"/><rect x="10" y="17" width="4" height="4" rx="1"/>
-      <path d="M8 6.5c.5 1 .5 2 0 3m4-3c.5 1 .5 2 0 3"/>
-    </svg>
-  ),
-  tracker: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(213,176,216,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-      <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
-    </svg>
-  ),
-  save: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(213,176,216,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-    </svg>
-  ),
-  anon: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(213,176,216,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M9 9.5a3 3 0 0 1 6 0c0 2-2 2.5-3 4m0 3.5h.01"/>
-    </svg>
-  ),
-  shield: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(213,176,216,0.9)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2l8 3v5c0 5-3.5 9.74-8 11-4.5-1.26-8-6-8-11V5l8-3z"/>
-      <path d="M9 12l2 2 4-4"/>
-    </svg>
-  ),
-};
+import { Users, Lightbulb, CalendarDays, Bookmark, EyeOff, Shield, Check, User, Mail, Lock, Circle } from 'lucide-react';
 
 const FEATURES = [
-  { iconKey: 'community', title: 'Mama Village Community', desc: 'Post, read, reply — 14,000+ Nigerian mamas.' },
-  { iconKey: 'food',      title: 'Nigerian Food Guide',    desc: 'What\'s safe to eat, trimester by trimester.' },
-  { iconKey: 'tracker',   title: 'Week-by-Week Tracker',  desc: 'Follow your baby\'s growth from week 1 to 40.' },
-  { iconKey: 'save',      title: 'Save Posts',             desc: 'Bookmark and revisit posts any time.' },
-  { iconKey: 'anon',      title: 'Post Anonymously',       desc: 'Share without showing your identity.' },
-  { iconKey: 'shield',    title: 'Safe & Moderated',       desc: 'AI keeps out hate. Realness stays.' },
+  { icon: <Users size={18} color="rgba(213,176,216,0.9)" strokeWidth="1.75" />,       title: 'Mama Village Community', desc: 'Post, read, reply — 14,000+ Nigerian mamas.' },
+  { icon: <Lightbulb size={18} color="rgba(213,176,216,0.9)" strokeWidth="1.75" />,   title: 'Nigerian Food Guide',    desc: "What's safe to eat, trimester by trimester." },
+  { icon: <CalendarDays size={18} color="rgba(213,176,216,0.9)" strokeWidth="1.75" />,title: 'Week-by-Week Tracker',  desc: 'Follow your baby\'s growth from week 1 to 40.' },
+  { icon: <Bookmark size={18} color="rgba(213,176,216,0.9)" strokeWidth="1.75" />,    title: 'Save Posts',             desc: 'Bookmark and revisit posts any time.' },
+  { icon: <EyeOff size={18} color="rgba(213,176,216,0.9)" strokeWidth="1.75" />,      title: 'Post Anonymously',       desc: 'Share without showing your identity.' },
+  { icon: <Shield size={18} color="rgba(213,176,216,0.9)" strokeWidth="1.75" />,      title: 'Safe & Moderated',       desc: 'AI keeps out hate. Realness stays.' },
 ];
 
 const TESTIMONIALS = [
@@ -95,7 +58,7 @@ export default function Join() {
             fontSize: '0.6875rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',
             marginBottom: 24,
           }}>
-            <svg width="6" height="6" viewBox="0 0 6 6"><circle cx="3" cy="3" r="3" fill="var(--amber-soft)"/></svg>
+            <Circle size={6} fill="var(--amber-soft)" stroke="none" />
             Always 100% free
           </div>
 
@@ -122,7 +85,7 @@ export default function Join() {
                   width: 34, height: 34, borderRadius: 10, flexShrink: 0,
                   background: 'rgba(138,100,146,0.22)', border: '1px solid rgba(213,176,216,0.18)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>{FeatureIcons[f.iconKey]}</span>
+                }}>{f.icon}</span>
                 <div>
                   <span style={{ fontWeight: 600, color: 'white', fontSize: '0.875rem' }}>{f.title}</span>
                   <span style={{ color: 'rgba(255,255,255,0.42)', fontSize: '0.8125rem', marginLeft: 6 }}>— {f.desc}</span>
@@ -166,9 +129,7 @@ export default function Join() {
                 margin: '0 auto 24px',
                 boxShadow: '0 12px 40px rgba(62,20,68,0.25)',
               }}>
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
+                <Check size={36} stroke="white" strokeWidth="2.5" />
               </div>
               <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.5rem', fontWeight: 800, color: 'var(--ink)', marginBottom: 12, letterSpacing: '-0.02em' }}>
                 Welcome to the village!
@@ -237,7 +198,7 @@ export default function Join() {
                 {mode === 'signup' && (
                   <div style={{ position: 'relative' }}>
                     <span style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--earth-light)" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                      <User size={16} stroke="var(--earth-light)" strokeWidth="2" />
                     </span>
                     <input className="input" placeholder="Username (e.g. Amara_Lagos)" style={{ paddingLeft: 42 }}/>
                   </div>
@@ -245,7 +206,7 @@ export default function Join() {
 
                 <div style={{ position: 'relative' }}>
                   <span style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--earth-light)" strokeWidth="2" strokeLinecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+                    <Mail size={16} stroke="var(--earth-light)" strokeWidth="2" />
                   </span>
                   <input
                     className="input"
@@ -257,7 +218,7 @@ export default function Join() {
 
                 <div style={{ position: 'relative' }}>
                   <span style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--earth-light)" strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <Lock size={16} stroke="var(--earth-light)" strokeWidth="2" />
                   </span>
                   <input className="input" type="password" placeholder={mode === 'signup' ? 'Create a password' : 'Password'} style={{ paddingLeft: 42 }}/>
                 </div>

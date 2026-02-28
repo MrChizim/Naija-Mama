@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { hospitals } from '../data/hospitals';
-import Icon from '../components/Icon';
+import { Check, Building2, AlertTriangle, Search, Map, MapPin, Star, Shield, Heart, MessageCircle, Navigation } from 'lucide-react';
 
 const HERO = 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1400&q=80&auto=format&fit=crop';
 const HERO2 = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=900&q=80&auto=format&fit=crop';
@@ -27,7 +27,7 @@ function Toast({ msg, onDone }) {
   return (
     <div style={{ position:'fixed', bottom:32, left:'50%', transform:'translateX(-50%)', background:'var(--ink)', color:'white', padding:'13px 24px', borderRadius:'var(--radius-full)', fontWeight:600, boxShadow:'0 8px 32px rgba(0,0,0,0.2)', zIndex:9999, whiteSpace:'nowrap', display:'flex', alignItems:'center', gap:10, animation:'fadeInUp 0.3s var(--ease)' }}>
       <span style={{ width:20, height:20, background:'#059669', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-        <Icon name="check" size={11} color="white" />
+        <Check size={11} color="white" strokeWidth="2" />
       </span>
       {msg}
     </div>
@@ -69,7 +69,7 @@ export default function Hospitals() {
 
         <div style={{ position:'relative', zIndex:1, maxWidth:1240, margin:'0 auto', width:'100%', padding:'0 clamp(16px,4vw,48px) 64px' }}>
           <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'rgba(62,20,68,0.9)', color:'white', padding:'6px 16px', borderRadius:'var(--radius-full)', fontSize:'0.75rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:20 }}>
-            <Icon name="hospital" size={13} color="white" />
+            <Building2 size={13} color="white" strokeWidth="1.8" />
             Reviewed by Nigerian Mamas
           </div>
           <h1 className="display-xl" style={{ color:'white', maxWidth:620, marginBottom:16 }}>Nigerian Maternity<br/>Hospital Directory</h1>
@@ -92,7 +92,7 @@ export default function Hospitals() {
       <div style={{ background:'#FFFBEB', borderBottom:'1px solid #FDE68A', padding:'14px clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto', display:'flex', alignItems:'flex-start', gap:12 }}>
           <div style={{ color:'#D97706', flexShrink:0, marginTop:1 }}>
-            <Icon name="alert" size={16} color="#D97706" />
+            <AlertTriangle size={16} color="#D97706" strokeWidth="1.8" />
           </div>
           <p style={{ fontSize:'0.8125rem', color:'#92400E', lineHeight:1.6 }}>
             <strong>Information only.</strong> NaijaMama is not a licensed medical provider. Hospital listings and reviews are submitted by community members and do not constitute medical advice. Always consult your doctor or midwife when choosing a maternity facility.
@@ -105,7 +105,7 @@ export default function Hospitals() {
         <div style={{ maxWidth:1240, margin:'0 auto', display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
           <div style={{ position:'relative', flex:'1 1 280px' }}>
             <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', color:'var(--earth-light)' }}>
-              <Icon name="search" size={16} />
+              <Search size={16} strokeWidth="1.8" />
             </span>
             <input className="input" placeholder="Search hospital, city, or state..." value={search} onChange={e=>setSearch(e.target.value)} style={{ paddingLeft:42 }} aria-label="Search hospitals" />
           </div>
@@ -127,7 +127,7 @@ export default function Hospitals() {
         {filtered.length===0 ? (
           <div style={{ textAlign:'center', padding:'80px 0' }}>
             <div style={{ width:64, height:64, borderRadius:'50%', background:'var(--crimson-pale)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px' }}>
-              <Icon name="search" size={28} color="var(--crimson)" />
+              <Search size={28} color="var(--crimson)" strokeWidth="1.8" />
             </div>
             <p style={{ fontSize:'1.2rem', fontWeight:600, color:'var(--ink)', marginBottom:8 }}>No hospitals found</p>
             <p style={{ color:'var(--earth-mid)' }}>Try adjusting your search or filters.</p>
@@ -143,7 +143,7 @@ export default function Hospitals() {
           <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=70&auto=format&fit=crop" alt="Map of Nigeria" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'saturate(0.4) brightness(0.9)' }}/>
           <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(62,20,68,0.78) 0%, rgba(17,9,26,0.88) 100%)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12 }}>
             <div style={{ width:56, height:56, borderRadius:'50%', background:'rgba(255,255,255,0.15)', display:'flex', alignItems:'center', justifyContent:'center', border:'1.5px solid rgba(255,255,255,0.3)' }}>
-              <Icon name="map" size={28} color="white" />
+              <Map size={28} color="white" strokeWidth="1.8" />
             </div>
             <p style={{ fontFamily:'var(--font-sans)', fontSize:'1.25rem', fontWeight:700, color:'white' }}>Interactive Map — Coming Soon</p>
             <p style={{ fontSize:'0.875rem', color:'rgba(255,255,255,0.65)' }}>Find maternity hospitals near you across all 36 states</p>
@@ -167,7 +167,10 @@ export default function Hospitals() {
             ].map(item => (
               <div key={item.title} style={{ background:'var(--white)', borderRadius:20, padding:'28px 24px', boxShadow:'var(--shadow-sm)', border:'1px solid var(--earth-pale)' }}>
                 <div style={{ width:48, height:48, borderRadius:14, background:'var(--crimson-pale)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:18 }}>
-                  <Icon name={item.icon} size={22} color="var(--crimson)" />
+                  {item.icon === 'star' && <Star size={22} color="var(--crimson)" strokeWidth="1.8" />}
+                  {item.icon === 'shield' && <Shield size={22} color="var(--crimson)" strokeWidth="1.8" />}
+                  {item.icon === 'heart' && <Heart size={22} color="var(--crimson)" strokeWidth="1.8" />}
+                  {item.icon === 'chat' && <MessageCircle size={22} color="var(--crimson)" strokeWidth="1.8" />}
                 </div>
                 <h3 style={{ fontSize:'1rem', fontWeight:700, color:'var(--ink)', marginBottom:10 }}>{item.title}</h3>
                 <p style={{ fontSize:'0.875rem', color:'var(--earth-mid)', lineHeight:1.7 }}>{item.body}</p>
@@ -267,7 +270,7 @@ function HospCard({ h, index }) {
           <h3 style={{ fontFamily:'var(--font-sans)', fontSize:'1.0625rem', fontWeight:700, color:'var(--ink)', marginBottom:3, lineHeight:1.3 }}>{h.name}</h3>
           <p style={{ fontSize:'0.75rem', color:'var(--earth-light)', marginBottom:8 }}>{h.fullName}</p>
           <p style={{ fontSize:'0.8125rem', color:'var(--earth-mid)', display:'flex', alignItems:'center', gap:6 }}>
-            <Icon name="pin" size={13} color="var(--earth-light)" />
+            <MapPin size={13} color="var(--earth-light)" strokeWidth="1.8" />
             {h.city}, {h.state}
           </p>
         </div>
@@ -289,7 +292,7 @@ function HospCard({ h, index }) {
         <div style={{ display:'flex', gap:10 }}>
           <button className="btn btn-outline btn-sm" style={{ flex:1 }}>See Full Reviews</button>
           <button className="btn btn-primary btn-sm" style={{ display:'inline-flex', alignItems:'center', gap:6 }}>
-            <Icon name="directions" size={13} color="white" />
+            <Navigation size={13} color="white" strokeWidth="1.8" />
             Directions
           </button>
         </div>

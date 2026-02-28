@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Icon from './Icon';
+import { Check, AlertTriangle } from 'lucide-react';
 
 export default function FoodCard({ food }) {
   const [expanded, setExpanded] = useState(false);
@@ -36,7 +36,7 @@ export default function FoodCard({ food }) {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 48, height: 48, borderRadius: 12, overflow: 'hidden', background: 'var(--ivory-dark)', border: `1.5px solid ${cfg.border}` }}>
+          <div style={{ width: 48, height: 48, borderRadius: 12, overflow: 'hidden', background: 'var(--ivory-dark)', border: `1.5px solid ${config.border}` }}>
             {food.image && <img src={food.image} alt={food.name} loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover' }}/>}
           </div>
           <h3 style={{
@@ -117,7 +117,7 @@ export default function FoodCard({ food }) {
             marginBottom: 4,
           }}>
             <span style={{ display:'inline-flex', alignItems:'center', gap:6 }}>
-              <Icon name={food.safety === 'safe' ? 'check' : 'alert'} size={14} color={cfg.color} />
+              {food.safety === 'safe' ? <Check size={14} color={config.color} strokeWidth="1.8" /> : <AlertTriangle size={14} color={config.color} strokeWidth="1.8" />}
               {food.safety === 'safe' ? 'Nutritional benefit:' : 'Risk to note:'}
             </span>
           </p>
