@@ -79,6 +79,32 @@ function IconInfo({ size = 12 }) {
     </svg>
   );
 }
+function IconChevron({ size = 14, dir = 'down' }) {
+  const rot = { down: 0, up: 180, right: -90, left: 90 }[dir];
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: `rotate(${rot}deg)`, transition: 'transform 200ms' }}>
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  );
+}
+
+/* ── Mock reply threads (attached to post ID) ── */
+const MOCK_REPLIES = {
+  1: [
+    { id: 'r1a', author: 'Adaeze K.', city: 'Port Harcourt', initial: 'A', avatarColor: '#3E1444', timePosted: '2h ago', body: 'Same thing happened to me at week 28! My doctor said it was normal Braxton Hicks. Did yours feel like tightening across the whole belly?' },
+    { id: 'r1b', author: 'Anonymous Mama', isAnon: true, timePosted: '1h ago', body: 'I had this too. Make sure you stay hydrated — dehydration can trigger them earlier. Are you drinking enough water?' },
+    { id: 'r1c', author: 'Ngozi T.', city: 'Enugu', initial: 'N', avatarColor: '#8A6492', timePosted: '45m ago', body: 'My midwife told me if they come more than 4 times an hour to call the hospital. Track them with a timer just to be safe 🙏' },
+  ],
+  2: [
+    { id: 'r2a', author: 'Fatima A.', city: 'Kano', initial: 'F', avatarColor: '#5F6B7C', timePosted: '3h ago', body: 'Congratulations mama! LUTH is generally fine, I delivered there in 2023. What ward are you looking at — private or semi-private?' },
+    { id: 'r2b', author: 'Chisom O.', city: 'Lagos', initial: 'C', avatarColor: '#2E7D32', timePosted: '2h ago', body: 'I delivered at LUTH last year. The midwives are great but bring your own necessities (towels, basin, sanitary pads, baby clothes). The hospital can be understaffed some nights.' },
+  ],
+  3: [
+    { id: 'r3a', author: 'Bisi A.', city: 'Ibadan', initial: 'B', avatarColor: '#7B1FA2', timePosted: '5h ago', body: 'Zobo is fine in moderation! The concern is usually with hibiscus tea in concentrated form in very early pregnancy. Light zobo drinks are generally considered safe after the first trimester — but confirm with your doctor.' },
+    { id: 'r3b', author: 'Mama Titi', city: 'Abuja', initial: 'T', avatarColor: '#C62828', timePosted: '4h ago', body: 'My doctor said 1 small cup a day is fine. The issue is high-concentration hibiscus (like supplements or very strong brewed tea). Cold bottled zobo is usually okay.' },
+    { id: 'r3c', author: 'Anonymous Mama', isAnon: true, timePosted: '3h ago', body: 'I avoided it completely in first trimester then had it occasionally after. Better safe than sorry for that critical period.' },
+  ],
+};
 
 function Toast({ msg, onDone }) {
   setTimeout(onDone, 2800);
@@ -128,14 +154,94 @@ const TRIMESTER_LABELS = {
   all: 'All posts', first: 'First Trimester', second: 'Second Trimester', third: 'Third Trimester', newmama: 'New Mamas',
 };
 
+/* ── Sidebar content (shared between desktop aside and mobile accordion) ── */
+function SidebarContent({ onCompose }) {
+  return (
+    <>
+      <div style={{ background: 'var(--ink)', borderRadius: 16, padding: '20px', textAlign: 'center' }}>
+        <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.65)', marginBottom: 14, lineHeight: 1.6 }}>
+          Share your experience with 14,000+ mamas
+        </p>
+        <button onClick={onCompose} style={{
+          width: '100%', padding: '11px', borderRadius: 'var(--radius-full)',
+          background: 'var(--crimson)', color: 'white',
+          fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '0.875rem',
+          cursor: 'pointer', border: 'none',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+        }}>
+          <IconPencil size={14}/> Write a post
+        </button>
+      </div>
+
+      <div style={{ background: 'white', borderRadius: 16, border: '1px solid var(--earth-pale)', overflow: 'hidden' }}>
+        <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--earth-pale)' }}>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink)' }}>Village stats</p>
+        </div>
+        {[
+          { label: 'Total members',    value: '14,247' },
+          { label: 'Posts this week',  value: '1,891' },
+          { label: 'Active right now', value: '342' },
+        ].map(({ label, value }) => (
+          <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '11px 18px', borderBottom: '1px solid var(--earth-pale)' }}>
+            <span style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)' }}>{label}</span>
+            <span style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '0.875rem' }}>{value}</span>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ background: 'white', borderRadius: 16, border: '1px solid var(--earth-pale)', overflow: 'hidden' }}>
+        <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--earth-pale)', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <IconTrend size={13}/>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink)' }}>Trending</p>
+        </div>
+        <div style={{ padding: '6px 8px' }}>
+          {trendingTopics.map((t, i) => (
+            <div key={t.tag} style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              padding: '8px 10px', borderRadius: 8, cursor: 'pointer',
+              transition: 'background var(--dur-fast)',
+            }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--cream)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: i < 3 ? 'var(--crimson)' : 'var(--earth-light)', minWidth: 16 }}>{i + 1}</span>
+                <span style={{ fontSize: '0.8125rem', color: 'var(--ink)', fontWeight: 500 }}>{t.tag}</span>
+              </div>
+              <span style={{ fontSize: '0.75rem', color: 'var(--earth-light)' }}>{t.count}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <a href="https://www.siriusjobs.com.ng" target="_blank" rel="noopener noreferrer" style={{
+        display: 'block', background: 'var(--crimson-pale)', borderRadius: 16,
+        padding: '18px', textDecoration: 'none', border: '1px solid var(--crimson-soft)',
+        transition: 'background var(--dur-fast)',
+      }}
+        onMouseEnter={e => e.currentTarget.style.background = 'var(--cream-dark)'}
+        onMouseLeave={e => e.currentTarget.style.background = 'var(--crimson-pale)'}
+      >
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--crimson)', display: 'block', marginBottom: 6 }}>
+          Need someone to talk to?
+        </span>
+        <p style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)', lineHeight: 1.6 }}>
+          Pregnancy can be overwhelming. Therapists and doctors are here for you.
+        </p>
+      </a>
+    </>
+  );
+}
+
 export default function Community() {
   const [sort, setSort]               = useState('new');
   const [trimFilter, setTrimFilter]   = useState('all');
   const [flairFilter, setFlairFilter] = useState('all');
-  const [flairTooltip, setFlairTooltip] = useState(null); // id of flair whose tooltip is open
+  const [flairTooltip, setFlairTooltip] = useState(null);
   const [toast, setToast]             = useState(null);
   const [showComposer, setShowComposer] = useState(false);
   const [expandedPost, setExpandedPost] = useState(null);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const sorted = [...communityPosts]
     .filter(p => trimFilter === 'all' || p.trimesterGroup === trimFilter)
@@ -171,7 +277,7 @@ export default function Community() {
               Real stories, real support, real Nigerian women.
             </p>
 
-            {/* ── Trimester tabs (abbreviated on mobile) ── */}
+            {/* ── Trimester tabs ── */}
             <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(255,255,255,0.08)', overflowX: 'auto', scrollbarWidth: 'none' }}>
               {TRIMESTER_FILTERS.map(f => (
                 <button key={f.value} onClick={() => setTrimFilter(f.value)} style={{
@@ -200,7 +306,6 @@ export default function Community() {
                       <button
                         onClick={() => {
                           setFlairFilter(f.id);
-                          // toggle tooltip on tap for flairs that have one
                           if (f.tooltip) setFlairTooltip(showTip ? null : f.id);
                           else setFlairTooltip(null);
                         }}
@@ -226,7 +331,6 @@ export default function Community() {
                           }}>i</span>
                         )}
                       </button>
-                      {/* Inline tooltip — visible on tap, dismisses when another is tapped */}
                       {showTip && f.tooltip && (
                         <div style={{
                           position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 500,
@@ -238,7 +342,6 @@ export default function Community() {
                           pointerEvents: 'none',
                         }}>
                           {f.tooltip}
-                          {/* Arrow */}
                           <div style={{ position: 'absolute', top: -5, left: 16, width: 10, height: 10, background: 'var(--ink)', transform: 'rotate(45deg)', borderRadius: 2 }}/>
                         </div>
                       )}
@@ -247,6 +350,11 @@ export default function Community() {
                 })}
               </div>
             </div>
+            {activeFlair?.tooltip && flairFilter !== 'all' && (
+              <div style={{ marginTop: 6, fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', maxWidth: 520, lineHeight: 1.5 }}>
+                <strong style={{ color: 'white' }}>{activeFlair.label}:</strong> {activeFlair.tooltip}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -258,7 +366,6 @@ export default function Community() {
         <div>
           {/* Feed controls */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, gap: 10 }}>
-            {/* Sort pills */}
             <div style={{ display: 'flex', gap: 2, background: 'var(--cream)', borderRadius: 'var(--radius-full)', padding: 3, border: '1px solid var(--earth-pale)', flexShrink: 0 }}>
               {SORT_OPTIONS.map(o => (
                 <button key={o.value} onClick={() => setSort(o.value)} style={{
@@ -272,7 +379,6 @@ export default function Community() {
                 }}>{o.label}</button>
               ))}
             </div>
-            {/* Active filter label */}
             {(trimFilter !== 'all' || flairFilter !== 'all') && (
               <div style={{ display: 'flex', gap: 4, alignItems: 'center', flex: 1, minWidth: 0 }}>
                 {trimFilter !== 'all' && (
@@ -317,81 +423,42 @@ export default function Community() {
               />
             ))}
           </div>
+
+          {/* ── Mobile sidebar accordion ── */}
+          <div className="hide-desktop" style={{ marginTop: 24 }}>
+            <button
+              onClick={() => setMobileSidebarOpen(o => !o)}
+              style={{
+                width: '100%', padding: '14px 18px',
+                background: 'white', border: '1px solid var(--earth-pale)',
+                borderRadius: mobileSidebarOpen ? '14px 14px 0 0' : 14,
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                cursor: 'pointer', fontFamily: 'var(--font-sans)',
+                fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)',
+              }}
+            >
+              <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <IconTrend size={15} />
+                Village stats &amp; trending
+              </span>
+              <IconChevron size={16} dir={mobileSidebarOpen ? 'up' : 'down'} />
+            </button>
+            {mobileSidebarOpen && (
+              <div style={{
+                background: 'var(--cream)', padding: 16,
+                border: '1px solid var(--earth-pale)', borderTop: 'none',
+                borderRadius: '0 0 14px 14px',
+                display: 'flex', flexDirection: 'column', gap: 14,
+              }}>
+                <SidebarContent onCompose={() => setShowComposer(true)} />
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Sidebar — desktop only */}
         <aside style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'sticky', top: 96 }} className="hide-mobile">
-          <div style={{ background: 'var(--ink)', borderRadius: 16, padding: '20px', textAlign: 'center' }}>
-            <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.65)', marginBottom: 14, lineHeight: 1.6 }}>
-              Share your experience with 14,000+ mamas
-            </p>
-            <button onClick={() => setShowComposer(true)} style={{
-              width: '100%', padding: '11px', borderRadius: 'var(--radius-full)',
-              background: 'var(--crimson)', color: 'white',
-              fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: '0.875rem',
-              cursor: 'pointer', border: 'none',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-            }}>
-              <IconPencil size={14}/> Write a post
-            </button>
-          </div>
-
-          <div style={{ background: 'white', borderRadius: 16, border: '1px solid var(--earth-pale)', overflow: 'hidden' }}>
-            <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--earth-pale)' }}>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink)' }}>Village stats</p>
-            </div>
-            {[
-              { label: 'Total members',    value: '14,247' },
-              { label: 'Posts this week',  value: '1,891' },
-              { label: 'Active right now', value: '342' },
-            ].map(({ label, value }) => (
-              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '11px 18px', borderBottom: '1px solid var(--earth-pale)' }}>
-                <span style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)' }}>{label}</span>
-                <span style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '0.875rem' }}>{value}</span>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ background: 'white', borderRadius: 16, border: '1px solid var(--earth-pale)', overflow: 'hidden' }}>
-            <div style={{ padding: '14px 18px', borderBottom: '1px solid var(--earth-pale)', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <IconTrend size={13}/>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink)' }}>Trending</p>
-            </div>
-            <div style={{ padding: '6px 8px' }}>
-              {trendingTopics.map((t, i) => (
-                <div key={t.tag} style={{
-                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  padding: '8px 10px', borderRadius: 8, cursor: 'pointer',
-                  transition: 'background var(--dur-fast)',
-                }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'var(--cream)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: i < 3 ? 'var(--crimson)' : 'var(--earth-light)', minWidth: 16 }}>{i + 1}</span>
-                    <span style={{ fontSize: '0.8125rem', color: 'var(--ink)', fontWeight: 500 }}>{t.tag}</span>
-                  </div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--earth-light)' }}>{t.count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <a href="https://www.siriusjobs.com.ng" target="_blank" rel="noopener noreferrer" style={{
-            display: 'block', background: 'var(--crimson-pale)', borderRadius: 16,
-            padding: '18px', textDecoration: 'none', border: '1px solid var(--crimson-soft)',
-            transition: 'background var(--dur-fast)',
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--cream-dark)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--crimson-pale)'}
-          >
-            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.875rem', fontWeight: 700, color: 'var(--crimson)', display: 'block', marginBottom: 6 }}>
-              Need someone to talk to?
-            </span>
-            <p style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)', lineHeight: 1.6 }}>
-              Pregnancy can be overwhelming. Therapists and doctors are here for you.
-            </p>
-          </a>
+          <SidebarContent onCompose={() => setShowComposer(true)} />
         </aside>
       </div>
 
@@ -420,11 +487,15 @@ export default function Community() {
 }
 
 function PostCard({ post, expanded, onExpand, onToast }) {
-  const [likes,    setLikes]    = useState(post.helpful);
-  const [liked,    setLiked]    = useState(false);
-  const [meToo,    setMeToo]    = useState(false);
-  const [saved,    setSaved]    = useState(false);
-  const [reported, setReported] = useState(false);
+  const [likes,       setLikes]       = useState(post.helpful);
+  const [liked,       setLiked]       = useState(false);
+  const [meToo,       setMeToo]       = useState(false);
+  const [saved,       setSaved]       = useState(false);
+  const [reported,    setReported]    = useState(false);
+  const [showReplies, setShowReplies] = useState(false);
+  const [replyText,   setReplyText]   = useState('');
+  const [replies,     setReplies]     = useState(MOCK_REPLIES[post.id] || []);
+  const [replyCount,  setReplyCount]  = useState(post.replies);
 
   const trimCfg  = TRIMESTER_CFG[post.trimesterGroup] || TRIMESTER_CFG.general;
   const flairCfg = FLAIR_COLORS[post.flair];
@@ -435,6 +506,22 @@ function PostCard({ post, expanded, onExpand, onToast }) {
     const text = encodeURIComponent('Check out this post on NaijaMama: "' + post.title + '" — naijamama.ng/community');
     window.open('https://wa.me/?text=' + text, '_blank');
   };
+
+  function handleAddReply() {
+    if (!replyText.trim()) return;
+    const newReply = {
+      id: 'user-' + Date.now(),
+      author: 'You',
+      isAnon: false,
+      initial: 'Y',
+      avatarColor: 'var(--crimson)',
+      timePosted: 'just now',
+      body: replyText.trim(),
+    };
+    setReplies(r => [...r, newReply]);
+    setReplyCount(c => c + 1);
+    setReplyText('');
+  }
 
   return (
     <article style={{
@@ -462,7 +549,6 @@ function PostCard({ post, expanded, onExpand, onToast }) {
               <span style={{ fontSize: '0.6875rem', color: 'var(--earth-light)' }}>· {post.city}</span>
             )}
           </div>
-          {/* Badges on second line — prevents cramping */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 2 }}>
             <span style={{ fontSize: '0.625rem', fontWeight: 600, padding: '2px 7px', borderRadius: 'var(--radius-full)', background: trimCfg.bg, color: trimCfg.color }}>
               {trimCfg.label}
@@ -499,9 +585,8 @@ function PostCard({ post, expanded, onExpand, onToast }) {
         ))}
       </div>
 
-      {/* ── Actions — two rows on mobile ── */}
+      {/* ── Actions ── */}
       <div style={{ paddingTop: 10, borderTop: '1px solid var(--earth-pale)' }}>
-        {/* Row 1: engagement */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
           <Btn active={liked} activeBg="var(--crimson-pale)" activeColor="var(--crimson)" activeBorder="var(--crimson-soft)"
             onClick={() => { setLiked(l => !l); setLikes(n => liked ? n - 1 : n + 1); }}>
@@ -511,11 +596,15 @@ function PostCard({ post, expanded, onExpand, onToast }) {
             onClick={() => { setMeToo(m => !m); if (!meToo) onToast('Me too! 👋'); }}>
             <span style={{ fontSize: 12 }}>👋</span> {meToo ? 'Me too!' : 'Me too'}
           </Btn>
-          <Btn onClick={() => {}}>
-            <IconMessage size={14}/> {post.replies}
+          {/* Replies — toggles thread */}
+          <Btn
+            active={showReplies}
+            activeBg="var(--cream)" activeColor="var(--ink)" activeBorder="var(--earth-pale)"
+            onClick={() => setShowReplies(r => !r)}
+          >
+            <IconMessage size={14}/> {replyCount} {replyCount === 1 ? 'reply' : 'replies'}
           </Btn>
         </div>
-        {/* Row 2: utility */}
         <div style={{ display: 'flex', gap: 6 }}>
           <Btn active={saved} activeBg="var(--crimson-pale)" activeColor="var(--crimson)" activeBorder="var(--crimson-soft)"
             onClick={() => { setSaved(s => !s); onToast(saved ? 'Removed from saved' : 'Saved!'); }}>
@@ -533,11 +622,92 @@ function PostCard({ post, expanded, onExpand, onToast }) {
           )}
         </div>
       </div>
+
+      {/* ── Reply thread ── */}
+      {showReplies && (
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--earth-pale)' }}>
+          {replies.length === 0 && (
+            <p style={{ fontSize: '0.8125rem', color: 'var(--earth-light)', marginBottom: 12 }}>No replies yet — be the first to respond.</p>
+          )}
+          {replies.map((r, i) => (
+            <div key={r.id} style={{
+              display: 'flex', gap: 10, marginBottom: 14,
+              paddingLeft: 12,
+              borderLeft: '2px solid var(--earth-pale)',
+              animation: i === replies.length - 1 && r.id.startsWith('user-') ? 'fadeInUp 0.25s var(--ease)' : 'none',
+            }}>
+              {r.isAnon ? (
+                <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, background: 'var(--earth-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <IconAnon size={13}/>
+                </div>
+              ) : (
+                <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, background: r.avatarColor, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 11 }}>
+                  {r.initial || r.author?.[0]}
+                </div>
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', marginBottom: 4 }}>
+                  <span style={{ fontWeight: 700, fontSize: '0.8125rem', color: 'var(--ink)' }}>
+                    {r.isAnon ? 'Anonymous Mama' : r.author}
+                  </span>
+                  {r.city && <span style={{ fontSize: '0.6875rem', color: 'var(--earth-light)' }}>· {r.city}</span>}
+                  <span style={{ fontSize: '0.6875rem', color: 'var(--earth-light)', marginLeft: 'auto' }}>{r.timePosted}</span>
+                </div>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)', lineHeight: 1.65 }}>{r.body}</p>
+              </div>
+            </div>
+          ))}
+
+          {/* Reply composer */}
+          <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end', marginTop: 8 }}>
+            <div style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--crimson)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: 'white', fontWeight: 700, fontSize: 11 }}>
+              Y
+            </div>
+            <div style={{ flex: 1, position: 'relative' }}>
+              <textarea
+                rows={2}
+                value={replyText}
+                onChange={e => setReplyText(e.target.value)}
+                placeholder="Write a reply..."
+                onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleAddReply(); } }}
+                style={{
+                  width: '100%', padding: '10px 46px 10px 14px',
+                  borderRadius: 12, border: '1.5px solid var(--earth-pale)',
+                  fontFamily: 'var(--font-sans)', fontSize: '0.875rem',
+                  color: 'var(--ink)', resize: 'none', lineHeight: 1.5,
+                  outline: 'none', boxSizing: 'border-box',
+                  background: 'var(--cream)',
+                  transition: 'border-color var(--dur-fast)',
+                }}
+                onFocus={e => e.target.style.borderColor = 'var(--crimson)'}
+                onBlur={e => e.target.style.borderColor = 'var(--earth-pale)'}
+              />
+              <button
+                onClick={handleAddReply}
+                disabled={!replyText.trim()}
+                style={{
+                  position: 'absolute', right: 8, bottom: 8,
+                  width: 28, height: 28, borderRadius: '50%',
+                  background: replyText.trim() ? 'var(--crimson)' : 'var(--earth-pale)',
+                  border: 'none', cursor: replyText.trim() ? 'pointer' : 'default',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'background var(--dur-fast)',
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <p style={{ fontSize: '0.7rem', color: 'var(--earth-light)', marginTop: 6, paddingLeft: 38 }}>Press Enter to reply · Shift+Enter for new line</p>
+        </div>
+      )}
     </article>
   );
 }
 
-function Btn({ children, active, activeBg, activeColor, activeBorder, onClick, style: extra }) {
+function Btn({ children, active, activeBg, activeColor, activeBorder, onClick }) {
   return (
     <button onClick={onClick} style={{
       display: 'flex', alignItems: 'center', gap: 5,
@@ -547,7 +717,6 @@ function Btn({ children, active, activeBg, activeColor, activeBorder, onClick, s
       border: '1px solid ' + (active ? activeBorder : 'var(--earth-pale)'),
       fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', fontWeight: active ? 600 : 400,
       cursor: 'pointer', transition: 'all var(--dur-fast)', whiteSpace: 'nowrap',
-      ...extra,
     }}>
       {children}
     </button>
@@ -556,13 +725,14 @@ function Btn({ children, active, activeBg, activeColor, activeBorder, onClick, s
 
 function ComposerModal({ onClose, onPost }) {
   const [isAnon, setIsAnon] = useState(false);
+  const [flair, setFlair] = useState('');
+  const flairObj = FLAIRS.find(f => f.id === flair);
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(45,27,34,0.6)', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', backdropFilter: 'blur(6px)' }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
       <div style={{ background: 'white', borderRadius: '20px 20px 0 0', padding: '20px 20px 32px', width: '100%', maxWidth: 600, animation: 'fadeInUp 0.25s var(--ease)', maxHeight: '92vh', overflowY: 'auto' }}>
 
-        {/* Handle bar */}
         <div style={{ width: 36, height: 4, borderRadius: 2, background: 'var(--earth-pale)', margin: '0 auto 18px' }}/>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
@@ -576,7 +746,6 @@ function ComposerModal({ onClose, onPost }) {
           <input className="input" placeholder="Give your post a title..." style={{ fontWeight: 600, fontSize: '1rem' }}/>
           <textarea className="input" rows={4} placeholder="Share your experience with the village..." style={{ resize: 'none', lineHeight: 1.65 }}/>
 
-          {/* Selects stacked on mobile */}
           <select className="input">
             <option value="">Trimester (optional)</option>
             <option value="first">First Trimester</option>
@@ -585,12 +754,17 @@ function ComposerModal({ onClose, onPost }) {
             <option value="newmama">New Mama</option>
             <option value="general">General</option>
           </select>
-          <select className="input">
+          <select className="input" value={flair} onChange={e => setFlair(e.target.value)}>
             <option value="">Topic / Flair</option>
             {FLAIRS.filter(f => f.id !== 'all').map(f => (
               <option key={f.id} value={f.id}>{f.label}{f.tooltip ? ' — ' + f.tooltip.split(' —')[0] : ''}</option>
             ))}
           </select>
+          {flairObj?.tooltip && (
+            <p style={{ marginTop: -6, fontSize: '0.75rem', color: 'var(--earth-mid)' }}>
+              <strong>{flairObj.label}:</strong> {flairObj.tooltip}
+            </p>
+          )}
 
           <div>
             <p style={{ fontSize: '0.75rem', color: 'var(--earth-light)', marginBottom: 8, fontWeight: 500 }}>Suggested tags</p>
@@ -601,7 +775,6 @@ function ComposerModal({ onClose, onPost }) {
             </div>
           </div>
 
-          {/* Anonymous toggle */}
           <button onClick={() => setIsAnon(a => !a)} style={{
             display: 'flex', alignItems: 'center', gap: 12,
             padding: '14px 16px', borderRadius: 14,

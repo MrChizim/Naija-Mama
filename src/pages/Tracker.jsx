@@ -6,18 +6,48 @@ import Icon from '../components/Icon';
 
 const HERO = 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1400&q=85&auto=format&fit=crop';
 
-/* Week-by-week size emoji — Nigerian fruits & familiar items */
-const SIZE_EMOJI = {
-  1: '🌱', 2: '🌱', 3: '🌱', 4: '🫘',
-  5: '🫘', 6: '🫐', 7: '🫐', 8: '🍇',
-  9: '🍈', 10: '🍈', 11: '🍋', 12: '🍋',
-  13: '🍊', 14: '🍊', 15: '🍑', 16: '🥑',
-  17: '🥑', 18: '🌽', 19: '🌽', 20: '🥭',
-  21: '🥭', 22: '🥭', 23: '🍆', 24: '🌽',
-  25: '🌽', 26: '🥬', 27: '🥦', 28: '🥥',
-  29: '🥥', 30: '🎃', 31: '🎃', 32: '🍉',
-  33: '🍉', 34: '🍉', 35: '🍉', 36: '🍈',
-  37: '🥬', 38: '🥬', 39: '🍼', 40: '👶',
+/* Baby size text descriptions — Nigerian context */
+const SIZE_TEXT = {
+  1:  { size: '0.1 mm', compare: 'smaller than a grain of sand' },
+  2:  { size: '1 mm',   compare: 'size of a poppy seed' },
+  3:  { size: '2 mm',   compare: 'size of a sesame seed' },
+  4:  { size: '4 mm',   compare: 'size of a dried kidney bean' },
+  5:  { size: '6 mm',   compare: 'size of a grain of rice' },
+  6:  { size: '8 mm',   compare: 'size of a lentil' },
+  7:  { size: '1.3 cm', compare: 'size of a blueberry' },
+  8:  { size: '1.6 cm', compare: 'size of a small grape' },
+  9:  { size: '2.3 cm', compare: 'size of a cherry' },
+  10: { size: '3.1 cm', compare: 'size of a date fruit' },
+  11: { size: '4 cm',   compare: 'size of a fig' },
+  12: { size: '5.4 cm', compare: 'size of a large lime' },
+  13: { size: '7.4 cm', compare: 'size of a small orange' },
+  14: { size: '8.7 cm', compare: 'size of a large orange' },
+  15: { size: '10 cm',  compare: 'size of an apple' },
+  16: { size: '11.6 cm',compare: 'size of an avocado' },
+  17: { size: '13 cm',  compare: 'size of a large pear' },
+  18: { size: '14 cm',  compare: 'size of a sweet potato' },
+  19: { size: '15 cm',  compare: 'size of a mango' },
+  20: { size: '16.4 cm',compare: 'size of a plantain' },
+  21: { size: '26 cm',  compare: 'length of a large plantain (head to toe)' },
+  22: { size: '27.8 cm',compare: 'length of a small yam tuber' },
+  23: { size: '28.9 cm',compare: 'length of a standard ruler' },
+  24: { size: '30 cm',  compare: 'length of a large corn cob' },
+  25: { size: '34.6 cm',compare: 'length of your forearm' },
+  26: { size: '35.6 cm',compare: 'length of a large cucumber' },
+  27: { size: '36.6 cm',compare: 'length of a head of cabbage' },
+  28: { size: '37.6 cm',compare: 'length of a large coconut shell (top to bottom)' },
+  29: { size: '38.6 cm',compare: 'length of a small watermelon' },
+  30: { size: '39.9 cm',compare: 'length of a 40 cm ruler' },
+  31: { size: '41.1 cm',compare: 'length of a medium pumpkin' },
+  32: { size: '42.4 cm',compare: 'size of a small pumpkin' },
+  33: { size: '43.7 cm',compare: 'size of a pineapple' },
+  34: { size: '45 cm',  compare: 'size of a large pineapple' },
+  35: { size: '46.2 cm',compare: 'size of a small watermelon' },
+  36: { size: '47.4 cm',compare: 'size of a large watermelon' },
+  37: { size: '48.6 cm',compare: 'about the length of a new broom handle' },
+  38: { size: '49.8 cm',compare: 'about the length of a newborn baby blanket' },
+  39: { size: '50.7 cm',compare: 'close to full newborn size' },
+  40: { size: '51.2 cm',compare: 'full-term newborn — ready to meet the world!' },
 };
 
 function CircularProgress({ percent, week, trimester }) {
@@ -55,9 +85,28 @@ function CircularProgress({ percent, week, trimester }) {
 
 export default function Tracker() {
   const [searchParams] = useSearchParams();
-  const initialWeek = parseInt(searchParams.get('week')) || 1;
+  const urlWeek = parseInt(searchParams.get('week'));
+
+  // If no stored week and no URL param, show the prompt
+  const stored = localStorage.getItem('nm_week');
+  const [showPrompt, setShowPrompt] = useState(!urlWeek && !stored);
+  const [promptInput, setPromptInput] = useState('');
+
+  const initialWeek = urlWeek || (stored ? parseInt(stored) : 1);
   const [selectedWeek, setSelectedWeek] = useState(Math.min(Math.max(initialWeek, 1), 40));
   const weekScrollRef = useRef(null);
+
+  function handlePromptSubmit(week) {
+    const w = Math.min(Math.max(parseInt(week) || 1, 1), 40);
+    localStorage.setItem('nm_week', w);
+    setSelectedWeek(w);
+    setShowPrompt(false);
+  }
+
+  function handleSkip() {
+    localStorage.setItem('nm_week', '1');
+    setShowPrompt(false);
+  }
 
   const data = weekData[selectedWeek];
   const percent = Math.round((selectedWeek / 40) * 100);
@@ -81,6 +130,87 @@ export default function Tracker() {
   return (
     <div style={{ paddingTop: 0, minHeight: '100vh', background: 'var(--ivory)' }}>
 
+      {/* ── Week prompt overlay ── */}
+      {showPrompt && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 9999,
+          background: 'rgba(38,12,53,0.72)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 20,
+        }}>
+          <div style={{
+            background: 'white', borderRadius: 24, padding: 'clamp(28px,5vw,44px)',
+            maxWidth: 420, width: '100%',
+            boxShadow: '0 32px 80px rgba(38,12,53,0.4)',
+            animation: 'fadeInUp 0.3s var(--ease)',
+            textAlign: 'center',
+          }}>
+            {/* Icon */}
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--crimson-pale)', margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--crimson)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                <path d="M12 8v4l3 3"/>
+              </svg>
+            </div>
+            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.3rem', fontWeight: 800, color: 'var(--ink)', marginBottom: 10, lineHeight: 1.2 }}>
+              What week are you on?
+            </h2>
+            <p style={{ fontSize: '0.9rem', color: 'var(--earth-mid)', marginBottom: 28, lineHeight: 1.65 }}>
+              We'll take you straight to your week so you see the most relevant information.
+            </p>
+
+            {/* Week input */}
+            <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+              <input
+                type="number"
+                min="1" max="40"
+                placeholder="e.g. 24"
+                value={promptInput}
+                onChange={e => setPromptInput(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && promptInput && handlePromptSubmit(promptInput)}
+                className="input"
+                style={{ flex: 1, fontSize: '1.2rem', fontWeight: 700, textAlign: 'center', height: 56, borderRadius: 14 }}
+                autoFocus
+              />
+              <button
+                onClick={() => promptInput && handlePromptSubmit(promptInput)}
+                style={{
+                  padding: '0 22px', borderRadius: 14, border: 'none',
+                  background: promptInput ? 'var(--crimson)' : 'var(--earth-pale)',
+                  color: promptInput ? 'white' : 'var(--earth-light)',
+                  fontWeight: 700, fontSize: '0.9rem', cursor: promptInput ? 'pointer' : 'default',
+                  transition: 'all var(--dur-fast)', height: 56,
+                  fontFamily: 'var(--font-sans)',
+                }}
+              >Go</button>
+            </div>
+
+            {/* Quick select — common weeks */}
+            <div style={{ display: 'flex', gap: 6, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 22 }}>
+              {[8, 12, 16, 20, 24, 28, 32, 36].map(w => (
+                <button key={w} onClick={() => handlePromptSubmit(w)} style={{
+                  padding: '6px 14px', borderRadius: 'var(--radius-full)',
+                  border: '1.5px solid var(--earth-pale)', background: 'var(--cream)',
+                  color: 'var(--earth-mid)', fontSize: '0.8125rem', fontWeight: 600,
+                  cursor: 'pointer', fontFamily: 'var(--font-sans)',
+                  transition: 'all var(--dur-fast)',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'var(--crimson-pale)'; e.currentTarget.style.borderColor = 'var(--crimson-soft)'; e.currentTarget.style.color = 'var(--crimson)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'var(--cream)'; e.currentTarget.style.borderColor = 'var(--earth-pale)'; e.currentTarget.style.color = 'var(--earth-mid)'; }}
+                >
+                  Wk {w}
+                </button>
+              ))}
+            </div>
+
+            <button onClick={handleSkip} style={{ background: 'none', border: 'none', color: 'var(--earth-light)', fontSize: '0.8125rem', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
+              Skip — start from week 1
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Hero */}
       <section style={{ position: 'relative', height: 'clamp(280px,38vh,400px)', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
         <img src={HERO} alt="Pregnancy tracker" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}/>
@@ -94,6 +224,18 @@ export default function Tracker() {
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: '1.0625rem', marginTop: 10 }}>Know exactly what's happening with you and your baby, every single week.</p>
         </div>
       </section>
+
+      {/* Week change nudge — shown when we have a stored week */}
+      {!showPrompt && localStorage.getItem('nm_week') && (
+        <div style={{ background: 'var(--crimson-pale)', padding: '10px clamp(16px,4vw,48px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--crimson)', fontWeight: 500 }}>
+            Showing Week {selectedWeek} — changed week?
+          </p>
+          <button onClick={() => { localStorage.removeItem('nm_week'); setShowPrompt(true); }} style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--crimson)', background: 'none', border: '1px solid var(--crimson-soft)', borderRadius: 'var(--radius-full)', padding: '4px 14px', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}>
+            Update my week
+          </button>
+        </div>
+      )}
 
       {/* Disclaimer banner */}
       <div style={{ background: '#FFFBEB', borderBottom: '1px solid #FDE68A', padding: '12px clamp(16px,4vw,48px)' }}>
@@ -166,21 +308,22 @@ export default function Tracker() {
             }}>
               <div style={{
                 width: 56, height: 56, borderRadius: 14,
-                background: 'white', border: '2px solid rgba(62,20,68,0.15)',
+                background: 'var(--crimson)', flexShrink: 0,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0, fontSize: 30, lineHeight: 1,
               }}>
-                {SIZE_EMOJI[selectedWeek] || '🌱'}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="4"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+                </svg>
               </div>
               <div>
                 <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.68rem', color: 'var(--crimson)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4 }}>
                   Baby's size — Week {selectedWeek}
                 </p>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', color: 'var(--ink)', fontWeight: 700, lineHeight: 1.25 }}>
-                  About the size of {data?.babySize?.toLowerCase().replace(/^a(n)? /i, '') || 'a poppy seed'}
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', color: 'var(--ink)', fontWeight: 800, lineHeight: 1.2, marginBottom: 2 }}>
+                  {SIZE_TEXT[selectedWeek]?.size || data?.babySize || 'Growing'}
                 </p>
-                <p style={{ fontSize: '0.75rem', color: 'var(--earth-mid)', marginTop: 2 }}>
-                  General comparison — every baby grows differently
+                <p style={{ fontSize: '0.8125rem', color: 'var(--earth-mid)', lineHeight: 1.4 }}>
+                  {SIZE_TEXT[selectedWeek]?.compare || 'Every baby grows differently'}
                 </p>
               </div>
             </div>

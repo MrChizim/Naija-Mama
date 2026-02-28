@@ -10,10 +10,10 @@ const PLATFORM_LINKS = [
 ];
 
 const COMPANY_LINKS = [
-  { label: 'About Us',       href: '#' },
-  { label: 'Privacy Policy', href: '#' },
-  { label: 'Terms of Use',   href: '#' },
-  { label: 'Contact Us',     href: '#' },
+  { label: 'About Us',       to: '/legal#about' },
+  { label: 'Privacy Policy', to: '/legal#privacy' },
+  { label: 'Terms of Use',   to: '/legal#terms' },
+  { label: 'Contact Us',     to: '/contact' },
 ];
 
 const SOCIAL = [
@@ -138,8 +138,8 @@ export default function Footer() {
               letterSpacing: '0.12em',
               marginBottom: 18,
             }}>Company</h4>
-            {COMPANY_LINKS.map(({ label, href }) => (
-              <a key={label} href={href} style={{
+            {COMPANY_LINKS.map(({ label, to }) => (
+              <Link key={label} to={to} style={{
                 display: 'block',
                 fontSize: '0.9rem',
                 color: 'rgba(255,255,255,0.6)',
@@ -148,7 +148,7 @@ export default function Footer() {
               }}
                 onMouseEnter={e => e.currentTarget.style.color = 'white'}
                 onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
-              >{label}</a>
+              >{label}</Link>
             ))}
           </div>
 

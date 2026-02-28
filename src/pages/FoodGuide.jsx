@@ -190,11 +190,11 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Glossary */}
-      <section ref={r4} className="reveal" style={{ background:'var(--cream)', padding:'clamp(16px,2.5vw,28px) clamp(16px,4vw,48px)' }}>
+      <section ref={r4} className="reveal" style={{ background:'var(--cream)', padding:'clamp(20px,2.5vw,32px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
-          <div style={{ textAlign:'center', marginBottom:18 }}>
-            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:10 }}>Pregnancy Glossary</p>
-            <h2 className="display-md">Common words, simple meanings</h2>
+          <div style={{ textAlign:'center', marginBottom:14 }}>
+            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:8 }}>Pregnancy Glossary</p>
+            <h2 className="display-sm">Common words, simple meanings</h2>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px, 1fr))', gap:12 }}>
             {GLOSSARY.map(g => (
@@ -208,11 +208,11 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Meal Plans */}
-      <section className="reveal" style={{ background:'var(--ivory)', padding:'clamp(14px,2.5vw,28px) clamp(16px,4vw,48px)', borderTop:'1px solid var(--earth-pale)' }}>
+      <section className="reveal" style={{ background:'var(--ivory)', padding:'clamp(20px,2.5vw,32px) clamp(16px,4vw,48px)', borderTop:'1px solid var(--earth-pale)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
-          <div style={{ textAlign:'center', marginBottom:16 }}>
-            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:10 }}>Sample Plans</p>
-            <h2 className="display-md">7-Day Nigerian Pregnancy Meal Ideas</h2>
+          <div style={{ textAlign:'center', marginBottom:14 }}>
+            <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:8 }}>Sample Plans</p>
+            <h2 className="display-sm">7-Day Nigerian Pregnancy Meal Ideas</h2>
             <p style={{ color:'var(--earth-mid)', fontSize:'0.9rem', marginTop:10, lineHeight:1.65 }}>
               These are general meal ideas based on common Nigerian pregnancy nutrition guidelines.<br/>
               <strong style={{ color:'var(--ink)' }}>Your doctor or dietitian should review your actual diet plan.</strong>
@@ -253,7 +253,7 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Herbs Warning */}
-      <section ref={r5} className="reveal" style={{ background:'linear-gradient(150deg, #1C0A0E 0%, var(--crimson-deep) 100%)', padding:'clamp(20px,3vw,36px) clamp(16px,4vw,48px)' }}>
+      <section ref={r5} className="reveal" style={{ background:'linear-gradient(150deg, #1C0A0E 0%, var(--crimson-deep) 100%)', padding:'clamp(20px,3vw,32px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:20 }}>
             <div className="badge" style={{ background:'rgba(255,100,100,0.2)', color:'#EF9A9A', display:'inline-flex', marginBottom:14 }}>Important Safety Information</div>
@@ -289,7 +289,7 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Common Pregnancy Symptoms & Bodily Changes */}
-      <section className="reveal" style={{ background:'var(--cream)', padding:'clamp(20px,3vw,36px) clamp(16px,4vw,48px)' }}>
+      <section className="reveal" style={{ background:'var(--cream)', padding:'clamp(20px,3vw,32px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:18 }}>
             <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:12 }}>What to Expect</p>
@@ -339,33 +339,38 @@ function FoodCardNew({ food, cfg }) {
   const [open, setOpen] = useState(false);
   const tLabels = { first:'1st', second:'2nd', third:'3rd' };
   return (
-    <div onClick={()=>setOpen(o=>!o)} className="card" style={{ padding:'16px', cursor:'pointer', borderTop:`3px solid ${cfg.color}` }}>
-      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', gap:12, marginBottom:10 }}>
-        <div style={{ display:'flex', alignItems:'center', gap:10 }}>
-          <div style={{ width:48, height:48, borderRadius:10, overflow:'hidden', background:'var(--ivory-dark)', border:`1.5px solid ${cfg.border}` }}>
-            {food.image && <img src={food.image} alt={food.name} loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover' }}/>}
-          </div>
-          <h3 style={{ fontFamily:'var(--font-serif)', fontSize:'0.95rem', fontWeight:600, color:'var(--ink)', lineHeight:1.3 }}>{food.name}</h3>
+    <div onClick={()=>setOpen(o=>!o)} style={{
+      padding:'14px 16px', cursor:'pointer',
+      borderRadius:14, border:`1px solid ${cfg.border}`,
+      borderLeft:`4px solid ${cfg.color}`,
+      background: open ? cfg.bg : 'white',
+      transition:'background var(--dur-fast)',
+    }}>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:8, marginBottom:8 }}>
+        <h3 style={{ fontFamily:'var(--font-sans)', fontSize:'0.9375rem', fontWeight:700, color:'var(--ink)', lineHeight:1.3, flex:1 }}>{food.name}</h3>
+        <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
+          <span className="badge" style={{ background:cfg.bg, color:cfg.color, border:`1px solid ${cfg.border}`, fontSize:'0.7rem' }}>{cfg.label}</span>
+          <span style={{ fontSize:11, color:'var(--earth-light)' }}>{open?'▲':'▼'}</span>
         </div>
-        <span style={{ fontSize:12, color:'var(--earth-light)', flexShrink:0 }}>{open?'▲':'▼'}</span>
       </div>
-      <span className="badge" style={{ background:cfg.bg, color:cfg.color, marginBottom:8 }}>{cfg.label}</span>
-      <div style={{ display:'flex', gap:4, flexWrap:'wrap', marginBottom:8 }}>
+      <div style={{ display:'flex', gap:4, flexWrap:'wrap', marginBottom: open ? 10 : 0 }}>
         {food.trimesters.map(t=>(
-          <span key={t} className="badge" style={{ background:'var(--amber-soft)', color:'var(--amber)', fontSize:'0.7rem' }}>{tLabels[t]} Trim</span>
+          <span key={t} style={{ fontSize:'0.7rem', fontWeight:600, padding:'2px 8px', borderRadius:'var(--radius-full)', background:'var(--amber-pale)', color:'var(--amber-deep)' }}>{tLabels[t]} Trim</span>
         ))}
       </div>
-      <p style={{ fontSize:'0.8125rem', color:'var(--earth-mid)', lineHeight:1.65, display:'-webkit-box', WebkitLineClamp: open?'unset':2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>
-        {food.explanation}
-      </p>
       {open && (
-        <div style={{ marginTop:10, padding:'12px 14px', background:cfg.bg, borderRadius:10 }}>
-          <p style={{ fontSize:'0.75rem', fontWeight:700, color:cfg.color, marginBottom:4, display:'flex', alignItems:'center', gap:6 }}>
-            <Icon name={food.safety==='safe' ? 'check' : 'alert'} size={14} color={cfg.color} />
-            {food.safety==='safe'?'Nutritional benefit:':'Risk to note:'}
+        <>
+          <p style={{ fontSize:'0.8125rem', color:'var(--earth-mid)', lineHeight:1.65, marginBottom:10 }}>
+            {food.explanation}
           </p>
-          <p style={{ fontSize:'0.8125rem', color:'var(--ink)', lineHeight:1.55 }}>{food.benefit||food.risk}</p>
-        </div>
+          <div style={{ padding:'10px 12px', background:'white', borderRadius:10, border:`1px solid ${cfg.border}` }}>
+            <p style={{ fontSize:'0.75rem', fontWeight:700, color:cfg.color, marginBottom:4, display:'flex', alignItems:'center', gap:6 }}>
+              <Icon name={food.safety==='safe' ? 'check' : 'alert'} size={13} color={cfg.color} />
+              {food.safety==='safe'?'Nutritional benefit:':'Risk to note:'}
+            </p>
+            <p style={{ fontSize:'0.8125rem', color:'var(--ink)', lineHeight:1.55 }}>{food.benefit||food.risk}</p>
+          </div>
+        </>
       )}
     </div>
   );

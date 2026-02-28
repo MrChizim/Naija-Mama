@@ -247,7 +247,12 @@ export default function Join() {
                   <span style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--earth-light)" strokeWidth="2" strokeLinecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
                   </span>
-                  <input className="input" type="email" placeholder="Email address" style={{ paddingLeft: 42 }}/>
+                  <input
+                    className="input"
+                    type={mode === 'login' ? 'text' : 'email'}
+                    placeholder={mode === 'login' ? 'Email or username' : 'Email address'}
+                    style={{ paddingLeft: 42 }}
+                  />
                 </div>
 
                 <div style={{ position: 'relative' }}>
