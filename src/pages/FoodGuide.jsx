@@ -48,7 +48,7 @@ export default function FoodGuide() {
   const [safety, setSafety] = useState('all');
   const [search, setSearch] = useState('');
   const [mealTab, setMealTab] = useState('first');
-  const r2=useReveal(), r3=useReveal(), r4=useReveal(), r5=useReveal();
+  const r2=useReveal(), r3=useReveal(), r4=useReveal(), r5=useReveal(), r6=useReveal(), r7=useReveal();
 
   const filtered = foods.filter(f => {
     const s = search.toLowerCase();
@@ -208,7 +208,7 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Meal Plans */}
-      <section className="reveal" style={{ background:'var(--ivory)', padding:'clamp(20px,2.5vw,32px) clamp(16px,4vw,48px)', borderTop:'1px solid var(--earth-pale)' }}>
+      <section ref={r6} className="reveal" style={{ background:'var(--ivory)', padding:'clamp(20px,2.5vw,32px) clamp(16px,4vw,48px)', borderTop:'1px solid var(--earth-pale)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:14 }}>
             <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:8 }}>Sample Plans</p>
@@ -289,7 +289,7 @@ Medically reviewed by a registered Nigerian dietitian
       </section>
 
       {/* Common Pregnancy Symptoms & Bodily Changes */}
-      <section className="reveal" style={{ background:'var(--cream)', padding:'clamp(20px,3vw,32px) clamp(16px,4vw,48px)' }}>
+      <section ref={r7} className="reveal" style={{ background:'var(--cream)', padding:'clamp(20px,3vw,32px) clamp(16px,4vw,48px)' }}>
         <div style={{ maxWidth:1240, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:18 }}>
             <p className="badge badge-crimson" style={{ display:'inline-flex', marginBottom:12 }}>What to Expect</p>
