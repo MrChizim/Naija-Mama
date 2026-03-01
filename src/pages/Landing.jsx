@@ -17,16 +17,16 @@ function useReveal() {
 
 /* ── Real photography ── */
 const IMG = {
-  hero:       'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=1200&q=85&auto=format&fit=crop',
-  mother1:    'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=700&q=80&auto=format&fit=crop',
-  mother2:    'https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=700&q=80&auto=format&fit=crop',
-  mother3:    'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80&auto=format&fit=crop',
-  food:       'https://images.unsplash.com/photo-1547592180-85f173990554?w=900&q=80&auto=format&fit=crop',
-  community:  'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80&auto=format&fit=crop',
-  hospital:   'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=700&q=80&auto=format&fit=crop',
-  avatar1:    'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=120&q=80&auto=format&fit=crop&face',
-  avatar2:    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format&fit=crop&face',
-  avatar3:    'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=120&q=80&auto=format&fit=crop&face',
+  hero:       '/landinghero.png',
+  mother1:    '/mama.JPG',
+  mother2:    '/baby.JPG',
+  mother3:    '/egusi.JPG',
+  food:       '/foods.jpg',
+  community:  'https://images.pexels.com/photos/32617904/pexels-photo-32617904.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  hospital:   '/suya.JPG',
+  avatar1:    '/baby.JPG',
+  avatar2:    '/mama.JPG',
+  avatar3:    '/hero.JPG',
 };
 
 const STATS = [
@@ -241,7 +241,7 @@ export default function Landing() {
                 to:    '/food-guide',
               },
               {
-                img:   IMG.mother1,
+                img:   '/baby.JPG',
                 label: 'Week-by-Week Tracker',
                 text:  "Follow your baby's growth with real Nigerian context — from ube to pawpaw.",
                 to:    '/tracker',
@@ -251,12 +251,6 @@ export default function Landing() {
                 label: 'Mama Village Community',
                 text:  'A village of 14,000+ women — post anonymously, share experiences, and find real Nigerian support.',
                 to:    '/community',
-              },
-              {
-                img:   IMG.mother3,
-                label: 'Join Free — Always',
-                text:  'No subscriptions, no paywalls. Create an account with Google or email in under a minute.',
-                to:    '/join',
               },
             ].map((f, i) => (
               <Link key={f.label} to={f.to} className={`reveal reveal-delay-${i + 1}`} style={{ textDecoration: 'none', display: 'block', overflow: 'hidden', borderRadius: i === 0 ? '20px 0 0 20px' : i === 3 ? '0 20px 20px 0' : 0, position: 'relative', minHeight: 400 }}
@@ -471,7 +465,7 @@ export default function Landing() {
 
       {/* ════ FINAL CTA ════ */}
       <section style={{
-        background: '#1C0A0E',
+        background: 'rgba(90, 58, 104, 0.98)',
         padding: 'clamp(80px,12vw,140px) clamp(24px,5vw,80px)',
         textAlign: 'center',
         position: 'relative', overflow: 'hidden',

@@ -4,7 +4,7 @@ import { weekData } from '../data/weeks';
 import { Heart, Baby, User, Utensils, AlertTriangle, Building2, Clock, Stethoscope } from 'lucide-react';
 
 
-const HERO = 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=1400&q=85&auto=format&fit=crop';
+const HERO = 'https://images.pexels.com/photos/33906413/pexels-photo-33906413.jpeg?auto=compress&cs=tinysrgb&w=1400';
 
 /* Baby size text descriptions — Nigerian context */
 const SIZE_TEXT = {

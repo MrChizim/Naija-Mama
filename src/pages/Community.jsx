@@ -180,9 +180,9 @@ export default function Community() {
       {/* ── Page header ── */}
       <div style={{ position: 'relative', background: '#1C0A0E', overflow: 'hidden' }}>
         <img
-          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&q=80&auto=format&fit=crop"
+          src="/communityhero.png"
           alt="Nigerian women community"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.3 }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(28,10,14,0.5) 0%, rgba(28,10,14,0.92) 100%)' }}/>
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(32px,5vw,64px) clamp(16px,5vw,80px) 0' }}>
@@ -196,6 +196,26 @@ export default function Community() {
             <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9375rem', marginBottom: 24, maxWidth: 400 }}>
               Real stories, real support, real Nigerian women.
             </p>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+              <a
+                href="/support"
+                style={{
+                  padding: '10px 16px',
+                  borderRadius: 'var(--radius-full)',
+                  background: 'var(--crimson)',
+                  color: 'white',
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  boxShadow: '0 6px 18px rgba(62,20,68,0.25)',
+                }}
+              >
+                Support the community
+              </a>
+            </div>
 
             {/* ── Trimester tabs ── */}
             <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(255,255,255,0.08)', overflowX: 'auto', scrollbarWidth: 'none' }}>

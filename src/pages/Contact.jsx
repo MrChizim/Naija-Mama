@@ -163,20 +163,8 @@ export default function Contact() {
                 Advertising enquiries
               </p>
               <p style={{ fontSize: '0.8125rem', color: 'var(--ink-soft)', lineHeight: 1.65, marginBottom: 14 }}>
-                Want to reach 14,000+ pregnant Nigerian women? Visit our Brands page to learn about our listing plans.
+                Want to reach 14,000+ pregnant Nigerian women? Contact us and we will share partnership options.
               </p>
-              <a href="/brands" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                padding: '8px 16px', borderRadius: 'var(--radius-full)',
-                background: 'var(--crimson)', color: 'white',
-                fontSize: '0.8125rem', fontWeight: 600, textDecoration: 'none',
-                transition: 'background var(--dur-fast)',
-              }}
-                onMouseEnter={e => e.currentTarget.style.background = 'var(--crimson-deep)'}
-                onMouseLeave={e => e.currentTarget.style.background = 'var(--crimson)'}
-              >
-                View brand listing plans →
-              </a>
             </div>
           </div>
 

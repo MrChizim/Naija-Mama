@@ -5,7 +5,6 @@ const PLATFORM_LINKS = [
   { label: 'Food Guide',    to: '/food-guide' },
   { label: 'Week Tracker',  to: '/tracker' },
   { label: 'Community',     to: '/community' },
-  { label: 'Brands',        to: '/brands' },
   { label: 'Saved Posts',   to: '/saved' },
   { label: 'Contact Us',    to: '/contact' },
 ];
@@ -171,6 +170,24 @@ export default function Footer() {
             }}>
               Pregnancy can be overwhelming. Talking to a professional can help.
             </p>
+            <Link
+              to="/support"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 7,
+                padding: '10px 18px',
+                borderRadius: 'var(--radius-full)',
+                background: 'var(--crimson)',
+                color: 'white',
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                marginBottom: 10,
+                transition: 'all var(--dur-fast)',
+              }}
+            >
+              Support the community
+            </Link>
             <a
               href="https://www.siriusjobs.com.ng"
               target="_blank"

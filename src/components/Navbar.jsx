@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { to: '/food-guide', label: 'Food Guide' },
   { to: '/tracker',    label: 'Week Tracker' },
   { to: '/community',  label: 'Community' },
-  { to: '/brands',     label: 'Brands' },
 ];
 
 export default function Navbar() {

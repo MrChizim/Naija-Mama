@@ -85,7 +85,7 @@ export default function Legal() {
                 { title: 'The Mama Village', desc: 'A free community forum where Nigerian mamas ask questions, share stories, and support each other.' },
                 { title: 'Nigerian Food Guide', desc: 'A pregnancy-specific guide to Nigerian foods — what is safe, what to limit, and what to avoid.' },
                 { title: 'Week-by-Week Tracker', desc: 'General information about fetal development and maternal changes across all 40 weeks of pregnancy.' },
-                { title: 'Trusted Brands', desc: 'A curated directory of Nigerian brands that serve pregnant women and new mothers.' },
+                { title: 'Trusted Partners', desc: 'A curated list of Nigerian partners that support pregnant women and new mothers.' },
               ].map(item => (
                 <div key={item.title} style={{ background: 'white', borderRadius: 14, padding: '18px', border: '1px solid var(--earth-pale)' }}>
                   <p style={{ fontWeight: 700, color: 'var(--ink)', marginBottom: 6, fontSize: '0.9rem' }}>{item.title}</p>

@@ -7,9 +7,9 @@ import FoodGuide from './pages/FoodGuide';
 import Tracker from './pages/Tracker';
 import Community from './pages/Community';
 import Pricing from './pages/Pricing';
-import Brands from './pages/Brands';
 import Saved from './pages/Saved';
 import Contact from './pages/Contact';
+import Support from './pages/Support';
 import Legal from './pages/Legal';
 
 function ScrollToTop() {
@@ -32,9 +32,9 @@ export default function App() {
           <Route path="/tracker" element={<Tracker />} />
           <Route path="/community" element={<Community />} />
           <Route path="/join" element={<Pricing />} />
-          <Route path="/brands" element={<Brands />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/legal" element={<Legal />} />
         </Routes>
       </main>

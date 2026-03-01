@@ -12,7 +12,7 @@ function useReveal() {
   return ref;
 }
 
-const HERO_IMG = 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1400&q=85&auto=format&fit=crop';
+const HERO_IMG = '/foodhero.png';
 
 const PRODUCTS_TO_AVOID = [
   { name: 'Alcohol & spirits', note: 'No safe amount in pregnancy. Avoid completely.' },
