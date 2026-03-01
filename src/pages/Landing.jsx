@@ -17,7 +17,7 @@ function useReveal() {
 
 /* ── Real photography ── */
 const IMG = {
-  hero:       '/landinghero.png',
+  hero:       '/landinghero-1600.jpg',
   mother1:    '/mama.JPG',
   mother2:    '/baby.JPG',
   mother3:    '/egusi.JPG',
@@ -58,7 +58,7 @@ export default function Landing() {
     <div className="page-wrap" style={{ paddingTop: 0, overflow: 'hidden' }}>
 
       {/* ════ HERO ════ */}
-      <section style={{
+      <section className="landing-hero" style={{
         position: 'relative',
         height: '100vh',
         minHeight: 600,
@@ -68,8 +68,13 @@ export default function Landing() {
       }}>
         {/* Full-bleed photo */}
         <img
+          className="landing-hero-img"
           src={IMG.hero}
+          srcSet="/landinghero-900.jpg 900w, /landinghero-1600.jpg 1600w"
+          sizes="(max-width: 640px) 100vw, 1200px"
           alt="Nigerian pregnant woman"
+          fetchpriority="high"
+          decoding="async"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
         />
 
@@ -257,7 +262,7 @@ export default function Landing() {
                 onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.feature-overlay').style.opacity = '1'; }}
                 onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.feature-overlay').style.opacity = '0'; }}
               >
-                <img src={f.img} alt={f.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, transition: 'transform 0.55s var(--ease)' }}/>
+                <img src={f.img} alt={f.label} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, transition: 'transform 0.55s var(--ease)' }}/>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,16,8,0.85) 0%, rgba(26,16,8,0.3) 60%, transparent 100%)' }}/>
                 <div className="feature-overlay" style={{ position: 'absolute', inset: 0, background: 'rgba(138,100,146,0.22)', opacity: 0, transition: 'opacity 0.3s ease' }}/>
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 24px' }}>

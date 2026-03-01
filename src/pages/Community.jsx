@@ -180,8 +180,11 @@ export default function Community() {
       {/* ── Page header ── */}
       <div style={{ position: 'relative', background: '#1C0A0E', overflow: 'hidden' }}>
         <img
-          src="/communityhero.png"
+          src="/communityhero-1600.jpg"
+          srcSet="/communityhero-900.jpg 900w, /communityhero-1600.jpg 1600w"
+          sizes="(max-width: 720px) 100vw, 1200px"
           alt="Nigerian women community"
+          decoding="async"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(28,10,14,0.5) 0%, rgba(28,10,14,0.92) 100%)' }}/>

@@ -12,7 +12,7 @@ function useReveal() {
   return ref;
 }
 
-const HERO_IMG = '/foodhero.png';
+const HERO_IMG = '/foodhero-1600.jpg';
 
 const PRODUCTS_TO_AVOID = [
   { name: 'Alcohol & spirits', note: 'No safe amount in pregnancy. Avoid completely.' },
@@ -66,7 +66,14 @@ export default function FoodGuide() {
     <div className="page-wrap" style={{ paddingTop:0 }}>
       {/* Hero */}
       <section style={{ position:'relative', height:'clamp(280px,42vh,420px)', display:'flex', alignItems:'flex-end', overflow:'hidden' }}>
-        <img src={HERO_IMG} alt="Nigerian food" style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>
+        <img
+          src={HERO_IMG}
+          srcSet="/foodhero-900.jpg 900w, /foodhero-1600.jpg 1600w"
+          sizes="(max-width: 720px) 100vw, 1200px"
+          alt="Nigerian food"
+          decoding="async"
+          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
+        />
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(26,10,0,0.3) 0%, rgba(26,10,0,0.85) 100%)' }}/>
         <div style={{ position:'relative', zIndex:1, maxWidth:1240, margin:'0 auto', width:'100%', padding:'0 clamp(16px,4vw,48px) 40px' }}>
           <div className="badge" style={{ background:'rgba(138,100,146,0.25)', color:'var(--amber)', display:'inline-flex', marginBottom:16 }}>
